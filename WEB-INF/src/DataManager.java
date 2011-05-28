@@ -3,6 +3,7 @@ import java.sql.*;
 public class DataManager {
 	private static DataManager mInstance;
 	private Connection mConnection;
+	public static boolean USE_SQLITE=false;
 
 	public DataManager() {
 		// TODO Auto-generated constructor stub
@@ -26,7 +27,12 @@ public class DataManager {
 		try {
 			mConnection = null;
 			// Class.forName("org.gjt.mm.mysql.Driver");
-			Class.forName("com.mysql.jdbc.Driver");
+			if (USE_SQLITE) {
+				Class.forName("org.sqlite.JDBC");
+			}else {
+				Class.forName("com.mysql.jdbc.Driver");
+			}
+			
 		}
 
 		catch (ClassNotFoundException cnfex) {
@@ -38,12 +44,18 @@ public class DataManager {
 
 	public Connection getConnection() {
 		String url = "jdbc:mysql://localhost:3306/mydb";
+		String urlSqlite="jdbc:sqlite:mydb.db";
 		String username = "root";
 		String password = "mysql";
 
 		try {
 			mConnection = null;
-			mConnection = DriverManager.getConnection(url, username, password);
+			if (USE_SQLITE) {
+				mConnection = DriverManager.getConnection(urlSqlite);
+			}else {
+				mConnection = DriverManager.getConnection(url, username, password);
+			}			
+			
 		} catch (SQLException sqlex) {
 			System.err.println("SQLException");
 			sqlex.printStackTrace();
