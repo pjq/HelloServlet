@@ -37,5 +37,24 @@
 	<servlet-mapping>
 		<servlet-name>add</servlet-name>
 		<url-pattern>/add</url-pattern>
+	</servlet-mapping>	
+	
+	<servlet>
+		<servlet-name>TwitterUpdateStatus</servlet-name>
+		<servlet-class>net.impjq.twitter.UpdateStatusImpl</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>TwitterUpdateStatus</servlet-name>
+		<url-pattern>/twitter/UpdateStatus</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>FacebookUpdateStatus</servlet-name>
+		<servlet-class>net.impjq.facebook.UpdateStatusImpl</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>FacebookUpdateStatus</servlet-name>
+		<url-pattern>/facebook/UpdateStatus</url-pattern>
+	</servlet-mapping>
+	
 </web-app>
