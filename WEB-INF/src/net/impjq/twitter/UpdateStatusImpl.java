@@ -2,6 +2,7 @@ package net.impjq.twitter;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Enumeration;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -27,9 +28,16 @@ public class UpdateStatusImpl extends UpdateStatus {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		resp.setContentType("text/html");
-        PrintWriter out = resp.getWriter();
-        out.println("Twitter Update");
-		
+		PrintWriter out = resp.getWriter();
+		out.println("Twitter Update");
+
+		Enumeration<String> params = req.getParameterNames();
+//		
+//		for (Enumeration<String> e=params.nextElement(); params.hasMoreElements(); ) {
+//			e.nextElement();
+//			
+//		}
+
 	}
 
 	@Override
