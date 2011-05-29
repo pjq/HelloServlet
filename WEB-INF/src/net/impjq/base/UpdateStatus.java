@@ -38,6 +38,9 @@ public abstract class UpdateStatus extends HttpServlet {
 		HashMap<String, String> hashMap = new HashMap<String, String>();
 		for (String p : params) {
 			String[] map = p.split("=");
+			if (map.length!=2) {
+				continue;
+			}
 			hashMap.put(map[0], map[1]);
 		}
 

@@ -13,6 +13,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import net.impjq.base.CommonParamString;
 import net.impjq.base.UpdateStatus;
 import net.impjq.util.Utils;
 
@@ -26,6 +27,7 @@ public class UpdateStatusImpl extends UpdateStatus {
 	@Override
 	public void updateStatus(String userName, String password, String message) {
 		// TODO Auto-generated method stub
+		TwitterAuth.getAccessToken();
 
 	}
 
@@ -56,6 +58,13 @@ public class UpdateStatusImpl extends UpdateStatus {
 
 			out.println(key + "=" + value);
 		}
+		
+		String userName=hashMap.get(CommonParamString.PARAM_USERNAME);
+		String password=hashMap.get(CommonParamString.PARAM_PASSWORD);
+		String message=hashMap.get(CommonParamString.PARAM_MESSAGE);
+		
+		
+		updateStatus(userName, password, message);
 
 		// Enumeration<String> en = req.getParameterNames();
 		//
