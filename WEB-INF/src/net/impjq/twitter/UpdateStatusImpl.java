@@ -27,7 +27,7 @@ public class UpdateStatusImpl extends UpdateStatus {
 	@Override
 	public void updateStatus(String userName, String password, String message) {
 		// TODO Auto-generated method stub
-		TwitterAuth.getAccessToken();
+		//TwitterAuth.getAccessToken();
 
 	}
 
