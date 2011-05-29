@@ -8,5 +8,10 @@ import javax.servlet.http.HttpServlet;
  *
  */
 public abstract class GetTimeline extends HttpServlet{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5510470811990058855L;
+
 	abstract void getTimeline();
 }

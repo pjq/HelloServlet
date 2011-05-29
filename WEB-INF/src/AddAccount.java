@@ -1,7 +1,5 @@
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.ResultSet;
-import java.sql.Statement;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -9,6 +7,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class AddAccount extends HttpServlet {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4887453147260012310L;
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)

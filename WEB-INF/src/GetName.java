@@ -6,8 +6,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.sun.xml.internal.ws.encoding.ContentType;
-
 
 public class GetName extends HttpServlet{
 
@@ -26,7 +24,7 @@ public class GetName extends HttpServlet{
 	       PrintWriter out = resp.getWriter();
 	       out.println("Get name,contentType="+contentType+",the method="+req.getMethod());
 	       out.println("\nStart Connect to the Mysql...");
-	       DataManager dataManager=DataManager.getInstance();
+	       //DataManager dataManager=DataManager.getInstance();
 	       out.println("\nConnect to the Mysql...done.");
 	}
 	
