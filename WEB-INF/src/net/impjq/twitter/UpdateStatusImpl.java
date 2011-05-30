@@ -95,6 +95,9 @@ public class UpdateStatusImpl extends UpdateStatus {
 		
 		
 		updateStatus(userName, password, message);
+		if (null==message) {
+            message="You message is null,use this prompt message";
+        }
 		Status status=updateStatus(message);
 		String st=status.getText()+status.getId();
 		out.println(st);
