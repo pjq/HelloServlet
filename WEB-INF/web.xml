@@ -45,7 +45,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>TwitterUpdateStatus</servlet-name>
-		<url-pattern>/twitter/UpdateStatus</url-pattern>
+		<url-pattern>/s1/UpdateStatus</url-pattern>
 	</servlet-mapping>
 	
 	<servlet>
@@ -54,7 +54,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>FacebookUpdateStatus</servlet-name>
-		<url-pattern>/facebook/UpdateStatus</url-pattern>
+		<url-pattern>/s2/UpdateStatus</url-pattern>
 	</servlet-mapping>
 	
 </web-app>
