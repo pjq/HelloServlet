@@ -1,5 +1,11 @@
 package net.impjq.twitter;
 
+import twitter4j.Status;
+import twitter4j.Twitter;
+import twitter4j.TwitterException;
+import twitter4j.TwitterFactory;
+import twitter4j.conf.ConfigurationBuilder;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -17,7 +23,32 @@ import net.impjq.base.UpdateStatus;
 import net.impjq.util.Utils;
 
 public class UpdateStatusImpl extends UpdateStatus {
+    public static final String CONSUMER_KEY = "Fa0VtxzeoxV7OuktLMrVLw";
+    public static final String CONSUMER_SECRET = "6X8el11OSkrnpeeziXeBNJbf1BBDRmBgFB0LNn7dY";
 
+    public static final String ACCESS_TOKEN = "52646242-mgwUKKcx9AjEzMmnwHs8aQ6SQeSCa2plg2PU8zeDu";
+    public static final String ACCESS_TOKEN_SECRET = "DlyuSJyvugoMcgLnDV98vxJSjWFXEfmxkAZvMOgCHo";
+
+    public static Status updateStatus(String message) {
+        ConfigurationBuilder cb = new ConfigurationBuilder();
+        cb.setDebugEnabled(true)
+                .setOAuthConsumerKey(CONSUMER_KEY)
+                .setOAuthConsumerSecret(CONSUMER_SECRET)
+                .setOAuthAccessToken(ACCESS_TOKEN)
+                .setOAuthAccessTokenSecret(ACCESS_TOKEN_SECRET);
+        TwitterFactory tf = new TwitterFactory(cb.build());
+        Twitter twitter = tf.getInstance();
+
+        Status status=null;
+        try {
+           status= twitter.updateStatus(message);
+          
+        } catch (TwitterException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return status;
+    }
 	/**
 	 * 
 	 */
@@ -27,7 +58,7 @@ public class UpdateStatusImpl extends UpdateStatus {
 	public void updateStatus(String userName, String password, String message) {
 		// TODO Auto-generated method stub
 		//TwitterAuth.getAccessToken();
-
+	    //updateStatus(message);
 	}
 
 	@Override
@@ -64,6 +95,10 @@ public class UpdateStatusImpl extends UpdateStatus {
 		
 		
 		updateStatus(userName, password, message);
+		Status status=updateStatus(message);
+		String st=status.getText()+status.getId();
+		out.println(st);
+		
 
 		// Enumeration<String> en = req.getParameterNames();
 		//
