@@ -99,8 +99,12 @@ public class UpdateStatusImpl extends UpdateStatus {
             message="You message is null,use this prompt message";
         }
 		Status status=updateStatus(message);
-		String st=status.getText()+status.getId();
-		out.println(st);
+		if (null!=status) {
+		    String st=status.getText()+status.getId();
+	        out.println(st); 
+        }else {
+            out.println("The response status is null,update failed"); 
+        }	
 		
 
 		// Enumeration<String> en = req.getParameterNames();
