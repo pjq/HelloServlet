@@ -147,16 +147,16 @@ public class UpdateStatusImpl extends UpdateStatus {
         return ReString.toString();
     }
 
-    public String urlDecode(String str) {
-        String result = str;
-        try {
-            result = URLDecoder.decode(str, "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-
-        return result;
-    }
+    // public String urlDecode(String str) {
+    // String result = str;
+    // try {
+    // result = URLDecoder.decode(str, "UTF-8");
+    // } catch (UnsupportedEncodingException e) {
+    // // TODO Auto-generated catch block
+    // e.printStackTrace();
+    // }
+    //
+    // return result;
+    // }
 
 }
