@@ -3,6 +3,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 
 
 public class Utils {
@@ -42,9 +43,14 @@ public class Utils {
 	 * @return The Data read from The InputStreamReader
 	 */
 	public static String readFromInputStream(InputStream is) {
-		String result = "";
+		String result = null;
 
-		result = readFromInputStream(new InputStreamReader(is));
+		try {
+            result = readFromInputStream(new InputStreamReader(is,"UTF-8"));
+        } catch (UnsupportedEncodingException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 
 		return result;
 	}
