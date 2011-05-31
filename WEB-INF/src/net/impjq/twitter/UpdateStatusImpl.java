@@ -76,7 +76,10 @@ public class UpdateStatusImpl extends UpdateStatus {
         // Enumeration<String> params = req.getParameterNames();
 
         String request = Utils.readFromInputStream(req.getInputStream());
-        out.println("请求, resquest=" + urlDecode(request));
+       
+        request=new String(request.getBytes(), "UTF-8");
+        
+        out.println(("请求, resquest=" + urlDecode(request)));
 
         HashMap<String, String> hashMap = parserPostParameters(request);
         int size = hashMap.size();
