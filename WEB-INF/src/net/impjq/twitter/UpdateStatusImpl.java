@@ -1,7 +1,6 @@
 
 package net.impjq.twitter;
 
-import sun.net.util.URLUtil;
 import twitter4j.Status;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
@@ -77,7 +76,7 @@ public class UpdateStatusImpl extends UpdateStatus {
         // Enumeration<String> params = req.getParameterNames();
 
         String request = Utils.readFromInputStream(req.getInputStream());
-        out.println("resquest=" + urlDecode(request));
+        out.println("请求, resquest=" + urlDecode(request));
 
         HashMap<String, String> hashMap = parserPostParameters(request);
         int size = hashMap.size();
