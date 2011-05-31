@@ -268,6 +268,7 @@ public class Sqlite implements DataBaseInterface {
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
+            Sqlite.getInstance().init();
         }
 
         return result;
