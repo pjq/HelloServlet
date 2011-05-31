@@ -69,7 +69,7 @@ public class UpdateStatusImpl extends UpdateStatus {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         // TODO Auto-generated method stub
-        resp.setContentType("text/html");
+        resp.setContentType("text/html;charset=UTF8");
         PrintWriter out = resp.getWriter();
         out.println("Twitter Update");
         resp.setCharacterEncoding("UTF-8");
