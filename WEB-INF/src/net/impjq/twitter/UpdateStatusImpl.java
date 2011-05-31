@@ -72,7 +72,7 @@ public class UpdateStatusImpl extends UpdateStatus {
         resp.setContentType("text/html;charset=UTF-8");
         PrintWriter out = resp.getWriter();
         out.println("Twitter Update");
-        resp.setCharacterEncoding("UTF-8");
+        //resp.setCharacterEncoding("UTF-8");
         // Enumeration<String> params = req.getParameterNames();
 
         String request = Utils.readFromInputStream(req.getInputStream());
