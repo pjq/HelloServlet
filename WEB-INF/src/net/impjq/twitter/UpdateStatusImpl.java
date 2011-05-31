@@ -69,21 +69,16 @@ public class UpdateStatusImpl extends UpdateStatus {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         // TODO Auto-generated method stub
-        resp.setContentType("text/html;charset=UTF8");
+        resp.setContentType("text/html;charset=UTF-8");
         PrintWriter out = resp.getWriter();
         out.println("Twitter Update");
         resp.setCharacterEncoding("UTF-8");
         // Enumeration<String> params = req.getParameterNames();
 
         String request = Utils.readFromInputStream(req.getInputStream());
-       
-        request=new String(request.getBytes(), "UTF-8");
-        
-        //out.println(new String(("请求, resquest=" + (request)).getBytes(),"UTF-8"));
-        
-        String chinese="中文测试，Chinese  Test";
-        out.println(chinese);
-        out.println("Coded with UTF-8"+new String(chinese.getBytes(),"UTF-8"));
+
+        // String chinese="中文测试，Chinese  Test";
+        // out.println(chinese);
 
         HashMap<String, String> hashMap = parserPostParameters(request);
         int size = hashMap.size();
