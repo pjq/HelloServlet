@@ -227,6 +227,7 @@ public class Sqlite implements DataBaseInterface {
                     .getString(Columns.Account.ACCOUNT_COLUMNS_USER_DISPLAY_NAME);
 
             accountInfo.setUserName(userName);
+            accountInfo.setPassword(userPassword);
             accountInfo.setEmail(userEmail);
             accountInfo.setDisplayName(userDisplayName);
             accountInfo.setTwitterAccessToken(userTwitterAccessToken);
