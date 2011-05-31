@@ -115,7 +115,7 @@ public class UpdateStatusImpl extends UpdateStatus {
             return;
         }
 
-        if (checkPassword(userName, accountInfo)) {
+        if (checkPassword(password, accountInfo)) {
             out.println("Twitter Update Result:");
             Status status = updateStatus(out, message, accountInfo);
             if (null != status) {
