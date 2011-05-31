@@ -23,7 +23,7 @@
 
 	<servlet>
 		<servlet-name>query</servlet-name>
-		<servlet-class>QueryDatabase</servlet-class>
+		<servlet-class>net.impjq.database.QueryDatabase</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>query</servlet-name>
