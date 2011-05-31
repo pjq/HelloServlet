@@ -1,5 +1,7 @@
+
 package net.impjq.twitter;
 
+import sun.net.util.URLUtil;
 import twitter4j.Status;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
@@ -10,6 +12,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map.Entry;
@@ -39,104 +43,115 @@ public class UpdateStatusImpl extends UpdateStatus {
         TwitterFactory tf = new TwitterFactory(cb.build());
         Twitter twitter = tf.getInstance();
 
-        Status status=null;
+        Status status = null;
         try {
-           status= twitter.updateStatus(message);
-          
+            status = twitter.updateStatus(message);
+
         } catch (TwitterException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
         return status;
     }
-	/**
+
+    /**
 	 * 
 	 */
-	private static final long serialVersionUID = 4979679200836047678L;
+    private static final long serialVersionUID = 4979679200836047678L;
 
-	@Override
-	public void updateStatus(String userName, String password, String message) {
-		// TODO Auto-generated method stub
-		//TwitterAuth.getAccessToken();
-	    //updateStatus(message);
-	}
+    @Override
+    public void updateStatus(String userName, String password, String message) {
+        // TODO Auto-generated method stub
+        // TwitterAuth.getAccessToken();
+        // updateStatus(message);
+    }
 
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		resp.setContentType("text/html");
-		PrintWriter out = resp.getWriter();
-		out.println("Twitter Update");
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
+        // TODO Auto-generated method stub
+        resp.setContentType("text/html");
+        PrintWriter out = resp.getWriter();
+        out.println("Twitter Update");
 
-		// Enumeration<String> params = req.getParameterNames();
+        // Enumeration<String> params = req.getParameterNames();
 
-		String request = Utils.readFromInputStream(req.getInputStream());
-		out.println("resquest=" + request);
+        String request = Utils.readFromInputStream(req.getInputStream());
+        out.println("resquest=" + urlDecode(request));
 
-		HashMap<String, String> hashMap = parserPostParameters(request);
-		int size = hashMap.size();
-		out.println("parameters size="+size);
+        HashMap<String, String> hashMap = parserPostParameters(request);
+        int size = hashMap.size();
+        out.println("parameters size=" + size);
 
-		Iterator<Entry<String, String>> iterator = hashMap.entrySet()
-				.iterator();
+        Iterator<Entry<String, String>> iterator = hashMap.entrySet()
+                .iterator();
 
-		while (iterator.hasNext()) {
-			Entry<String, String> entry = iterator.next();
-			String key = entry.getKey();
-			String value = entry.getValue();
+        while (iterator.hasNext()) {
+            Entry<String, String> entry = iterator.next();
+            String key = entry.getKey();
+            String value = entry.getValue();
 
-			out.println(key + "=" + value);
-		}
-		
-		String userName=hashMap.get(CommonParamString.PARAM_USERNAME);
-		String password=hashMap.get(CommonParamString.PARAM_PASSWORD);
-		String message=hashMap.get(CommonParamString.PARAM_MESSAGE);
-		
-		
-		updateStatus(userName, password, message);
-		if (null==message) {
-            message="You message is null,use this prompt message";
+            out.println(key + "=" + urlDecode(value));
         }
-//		Status status=updateStatus(message);
-//		if (null!=status) {
-//		    String st=status.getText()+status.getId();
-//	        out.println(st); 
-//        }else {
-//            out.println("The response status is null,update failed"); 
-//        }	
-		
 
-		// Enumeration<String> en = req.getParameterNames();
-		//
-		// while (en.hasMoreElements()) {
-		// String name = (String) en.nextElement();
-		// String value = req.getParameter(name);
-		// out.println(name + " = " + value);
-		// }
-	}
+        String userName = hashMap.get(CommonParamString.PARAM_USERNAME);
+        String password = hashMap.get(CommonParamString.PARAM_PASSWORD);
+        String message = hashMap.get(CommonParamString.PARAM_MESSAGE);
 
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		// super.doPost(req, resp);
-		doGet(req, resp);
-	}
+        updateStatus(userName, password, message);
+        if (null == message) {
+            message = "You message is null,use this prompt message";
+        }
+        // Status status=updateStatus(message);
+        // if (null!=status) {
+        // String st=status.getText()+status.getId();
+        // out.println(st);
+        // }else {
+        // out.println("The response status is null,update failed");
+        // }
 
-	public String getStream(HttpServletRequest request) throws IOException {
-		BufferedReader br = new BufferedReader(new InputStreamReader(request
-				.getInputStream(), "UTF-8"));
-		StringBuffer ReString = new StringBuffer();
-		String tmp = "";
-		while (true) {
-			tmp = br.readLine();
-			if (tmp == null)
-				break;
-			else
-				ReString.append(tmp);
-		}
-		return ReString.toString();
-	}
+        // Enumeration<String> en = req.getParameterNames();
+        //
+        // while (en.hasMoreElements()) {
+        // String name = (String) en.nextElement();
+        // String value = req.getParameter(name);
+        // out.println(name + " = " + value);
+        // }
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
+        // TODO Auto-generated method stub
+        // super.doPost(req, resp);
+        doGet(req, resp);
+    }
+
+    public String getStream(HttpServletRequest request) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(request
+                .getInputStream(), "UTF-8"));
+        StringBuffer ReString = new StringBuffer();
+        String tmp = "";
+        while (true) {
+            tmp = br.readLine();
+            if (tmp == null)
+                break;
+            else
+                ReString.append(tmp);
+        }
+        return ReString.toString();
+    }
+
+    public String urlDecode(String str) {
+        String result = str;
+        try {
+            result = URLDecoder.decode(str, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        return result;
+    }
 
 }
