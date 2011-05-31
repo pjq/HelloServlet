@@ -79,7 +79,7 @@ public class UpdateStatusImpl extends UpdateStatus {
        
         request=new String(request.getBytes(), "UTF-8");
         
-        out.println(new String(("请求, resquest=" + urlDecode(request)).getBytes(),"UTF-8"));
+        out.println(new String(("请求, resquest=" + (request)).getBytes(),"UTF-8"));
 
         HashMap<String, String> hashMap = parserPostParameters(request);
         int size = hashMap.size();
