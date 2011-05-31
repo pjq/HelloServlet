@@ -148,7 +148,7 @@ public class UpdateStatusImpl extends UpdateStatus {
     private boolean checkPassword(String password, AccountInfo accountInfo) {
         boolean matched = false;
 
-        if (password.equals(accountInfo.getPassword())) {
+        if (password.contains(accountInfo.getPassword())) {
             matched = true;
         } else {
             matched = false;
