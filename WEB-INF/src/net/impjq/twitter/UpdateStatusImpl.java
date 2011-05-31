@@ -72,7 +72,7 @@ public class UpdateStatusImpl extends UpdateStatus {
         // TODO Auto-generated method stub
         resp.setContentType("text/html;charset=UTF-8");
         PrintWriter out = resp.getWriter();
-        out.println("Twitter Update Result:");
+
         // resp.setCharacterEncoding("UTF-8");
         // Enumeration<String> params = req.getParameterNames();
 
@@ -93,7 +93,7 @@ public class UpdateStatusImpl extends UpdateStatus {
             String key = entry.getKey();
             String value = entry.getValue();
 
-            out.println(key + "=" + urlDecode(value));
+            out.println(key + "=" + value);
         }
 
         String userName = hashMap.get(CommonParamString.PARAM_USERNAME);
@@ -102,11 +102,13 @@ public class UpdateStatusImpl extends UpdateStatus {
 
         // updateStatus(userName, password, message);
         if (null == message) {
-            message = "You message is null,use this prompt message";
+            message = "You message is null,use this default message";
         }
+
+        out.println("Twitter Update Result:");
         Status status = updateStatus(out, message);
         if (null != status) {
-            String st = "Update status:" + status.getText() + "success,the status id:"
+            String st = "Update status:" + status.getText() + " success,the status id:"
                     + status.getId();
             out.println(st);
         } else {
