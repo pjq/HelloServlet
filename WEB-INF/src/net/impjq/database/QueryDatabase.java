@@ -31,9 +31,9 @@ public class QueryDatabase extends HttpServlet {
             new Sqlite().init();
             return;
         }
-        
+
         out.println("Add user test");
-        Sqlite.getInstance().addUser("pjq", "1234", "abasdf", "adbadfas");
+        // Sqlite.getInstance().addUser("pjq", "1234", "abasdf", "adbadfas");
 
         String sqlString = "SELECT *  from " + Sqlite.TABLE_ACCOUNT_NAME;
         try {

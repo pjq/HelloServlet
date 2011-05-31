@@ -75,17 +75,19 @@ public class Sqlite implements DataBaseInterface {
      * @return true if add success,false if it is already existed.
      */
     public boolean addUser(String username, String password, String twitterAccessToken,
-            String twitterAccessTokenSecret) {
+            String twitterAccessTokenSecret,String email) {
         String addUserSQL = "INSERT INTO " + TABLE_ACCOUNT_NAME + " ("
                 + Columns.Account.ACCOUNT_COLUMNS_USER_NAME + ","
                 + Columns.Account.ACCOUNT_COLUMNS_USER_PASSWORD + ","
                 + Columns.Account.ACCOUNT_COLUMNS_USER_TWITTER_ACCESS_TOKEN + ","
-                + Columns.Account.ACCOUNT_COLUMNS_USER_TWITTER_ACCESS_TOKEN_SECRET + " "
+                + Columns.Account.ACCOUNT_COLUMNS_USER_TWITTER_ACCESS_TOKEN_SECRET + ","
+                + Columns.Account.ACCOUNT_COLUMNS_USER_EMAIL+ " "
                 + ") values('"
                 + username + "','"
                 + password + "','"
                 + twitterAccessToken + "','"
-                + twitterAccessTokenSecret + "'"
+                + twitterAccessTokenSecret + "','"
+                + email + "'"
                 + ");";
 
         boolean result = false;

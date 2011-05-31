@@ -58,39 +58,45 @@ public class DataManager {
     }
 
     public Connection getConnection() {
+        if (null == mConnection) {
+            switch (DATABASE_TYPE) {
+                case DATABASE_TYPE_SQLITE: {
+                    try {
+                        mConnection = null;
+                        mConnection = DriverManager
+                                .getConnection("jdbc:sqlite:" + Sqlite.DATABASE_NAME);
+                    } catch (SQLException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                        mConnection = null;
+                        System.exit(1); // terminate program
+                    }
 
-        switch (DATABASE_TYPE) {
-            case DATABASE_TYPE_SQLITE: {
-                try {
-                    mConnection = null;
-                    mConnection = DriverManager
-                            .getConnection("jdbc:sqlite:" + Sqlite.DATABASE_NAME);
-                } catch (SQLException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
+                    break;
                 }
 
-                break;
-            }
+                case DATABASE_TYPE_MYSQL: {
+                    String url = "jdbc:mysql://localhost:3306/mydb";
+                    String username = "root";
+                    String password = "mysql";
 
-            case DATABASE_TYPE_MYSQL: {
-                String url = "jdbc:mysql://localhost:3306/mydb";
-                String username = "root";
-                String password = "mysql";
-
-                try {
-                    mConnection = null;
-                    mConnection = DriverManager.getConnection(url, username, password);
-                } catch (SQLException sqlex) {
-                    System.err.println("SQLException");
-                    sqlex.printStackTrace();
-                    System.exit(1); // terminate program
+                    try {
+                        mConnection = null;
+                        mConnection = DriverManager.getConnection(url, username, password);
+                    } catch (SQLException sqlex) {
+                        System.err.println("SQLException");
+                        sqlex.printStackTrace();
+                        mConnection = null;
+                        System.exit(1); // terminate program
+                       
+                    }
+                    break;
                 }
-                break;
+
+                default:
+                    break;
             }
 
-            default:
-                break;
         }
 
         return mConnection;

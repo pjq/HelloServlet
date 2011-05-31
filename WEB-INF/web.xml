@@ -29,7 +29,7 @@
 		<servlet-name>query</servlet-name>
 		<url-pattern>/query</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
 		<servlet-name>add</servlet-name>
 		<servlet-class>AddAccount</servlet-class>
@@ -37,8 +37,8 @@
 	<servlet-mapping>
 		<servlet-name>add</servlet-name>
 		<url-pattern>/add</url-pattern>
-	</servlet-mapping>	
-	
+	</servlet-mapping>
+
 	<servlet>
 		<servlet-name>TwitterUpdateStatus</servlet-name>
 		<servlet-class>net.impjq.twitter.UpdateStatusImpl</servlet-class>
@@ -47,7 +47,7 @@
 		<servlet-name>TwitterUpdateStatus</servlet-name>
 		<url-pattern>/s1/UpdateStatus</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
 		<servlet-name>FacebookUpdateStatus</servlet-name>
 		<servlet-class>net.impjq.facebook.UpdateStatusImpl</servlet-class>
@@ -56,5 +56,15 @@
 		<servlet-name>FacebookUpdateStatus</servlet-name>
 		<url-pattern>/s2/UpdateStatus</url-pattern>
 	</servlet-mapping>
-	
+
+
+	<servlet>
+		<servlet-name>Register</servlet-name>
+		<servlet-class>net.impjq.account.Register</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Register</servlet-name>
+		<url-pattern>/account/Register</url-pattern>
+	</servlet-mapping>
+
 </web-app>
