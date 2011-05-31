@@ -32,7 +32,7 @@ public class UpdateStatusImpl extends UpdateStatus {
     public static final String ACCESS_TOKEN = "52646242-mgwUKKcx9AjEzMmnwHs8aQ6SQeSCa2plg2PU8zeDu";
     public static final String ACCESS_TOKEN_SECRET = "DlyuSJyvugoMcgLnDV98vxJSjWFXEfmxkAZvMOgCHo";
 
-    public static Status updateStatus(String message) {
+    public static Status updateStatus(PrintWriter out, String message) {
         ConfigurationBuilder cb = new ConfigurationBuilder();
         cb.setDebugEnabled(true)
                 .setOAuthConsumerKey(CONSUMER_KEY)
@@ -49,6 +49,7 @@ public class UpdateStatusImpl extends UpdateStatus {
         } catch (TwitterException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
+            out.println(e.toString());
         }
         return status;
     }
@@ -71,8 +72,8 @@ public class UpdateStatusImpl extends UpdateStatus {
         // TODO Auto-generated method stub
         resp.setContentType("text/html;charset=UTF-8");
         PrintWriter out = resp.getWriter();
-        out.println("Twitter Update");
-        //resp.setCharacterEncoding("UTF-8");
+        out.println("Twitter Update Result:");
+        // resp.setCharacterEncoding("UTF-8");
         // Enumeration<String> params = req.getParameterNames();
 
         String request = Utils.readFromInputStream(req.getInputStream());
@@ -86,7 +87,7 @@ public class UpdateStatusImpl extends UpdateStatus {
 
         Iterator<Entry<String, String>> iterator = hashMap.entrySet()
                 .iterator();
-
+        out.println("Your request:");
         while (iterator.hasNext()) {
             Entry<String, String> entry = iterator.next();
             String key = entry.getKey();
@@ -99,17 +100,18 @@ public class UpdateStatusImpl extends UpdateStatus {
         String password = hashMap.get(CommonParamString.PARAM_PASSWORD);
         String message = hashMap.get(CommonParamString.PARAM_MESSAGE);
 
-        updateStatus(userName, password, message);
+        // updateStatus(userName, password, message);
         if (null == message) {
             message = "You message is null,use this prompt message";
         }
-        // Status status=updateStatus(message);
-        // if (null!=status) {
-        // String st=status.getText()+status.getId();
-        // out.println(st);
-        // }else {
-        // out.println("The response status is null,update failed");
-        // }
+        Status status = updateStatus(out, message);
+        if (null != status) {
+            String st = "Update status:" + status.getText() + "success,the status id:"
+                    + status.getId();
+            out.println(st);
+        } else {
+            out.println("The response status is null,update failed");
+        }
 
         // Enumeration<String> en = req.getParameterNames();
         //
