@@ -97,8 +97,8 @@ public class Sqlite implements DataBaseInterface {
     }
 
     private boolean isUserExist(String username) {
-        String queryUser = "SELECT (" + Columns.Account.ACCOUNT_COLUMNS_USER_NAME + ") from"
-                + TABLE_ACCOUNT_NAME + " where (" + TABLE_ACCOUNT_NAME + "='" + username + "')";
+        String queryUser = "SELECT (" + Columns.Account.ACCOUNT_COLUMNS_USER_NAME + ") from "
+                + TABLE_ACCOUNT_NAME + " where ( " + Columns.Account.ACCOUNT_COLUMNS_USER_NAME + " = '" + username + "' )";
         boolean existed = false;
 
         ResultSet resultSet = executeSqlQuery(queryUser);
