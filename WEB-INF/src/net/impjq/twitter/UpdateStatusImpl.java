@@ -21,8 +21,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import net.impjq.account.AccountInfo;
 import net.impjq.base.CommonParamString;
 import net.impjq.base.UpdateStatus;
+import net.impjq.database.Sqlite;
 import net.impjq.util.Utils;
 
 public class UpdateStatusImpl extends UpdateStatus {
@@ -32,13 +34,13 @@ public class UpdateStatusImpl extends UpdateStatus {
     public static final String ACCESS_TOKEN = "52646242-mgwUKKcx9AjEzMmnwHs8aQ6SQeSCa2plg2PU8zeDu";
     public static final String ACCESS_TOKEN_SECRET = "DlyuSJyvugoMcgLnDV98vxJSjWFXEfmxkAZvMOgCHo";
 
-    public static Status updateStatus(PrintWriter out, String message) {
+    public static Status updateStatus(PrintWriter out, String message, AccountInfo accountInfo) {
         ConfigurationBuilder cb = new ConfigurationBuilder();
         cb.setDebugEnabled(true)
                 .setOAuthConsumerKey(CONSUMER_KEY)
                 .setOAuthConsumerSecret(CONSUMER_SECRET)
-                .setOAuthAccessToken(ACCESS_TOKEN)
-                .setOAuthAccessTokenSecret(ACCESS_TOKEN_SECRET);
+                .setOAuthAccessToken(accountInfo.getTwitterAccessToken())
+                .setOAuthAccessTokenSecret(accountInfo.getTwitterAccessTokenSecret());
         TwitterFactory tf = new TwitterFactory(cb.build());
         Twitter twitter = tf.getInstance();
 
@@ -105,14 +107,26 @@ public class UpdateStatusImpl extends UpdateStatus {
             message = "You message is null,use this default message";
         }
 
-        out.println("Twitter Update Result:");
-        Status status = updateStatus(out, message);
-        if (null != status) {
-            String st = "Update status:" + status.getText() + " success,the status id:"
-                    + status.getId();
-            out.println(st);
+        AccountInfo accountInfo = Sqlite.getInstance().queryAccountInfo(userName);
+        out.print(accountInfo.toString());
+
+        if (null == userName || null == password) {
+            out.println("Your username or password is null.\nIf need help,please contact pengjianqing@gmail.com");
+            return;
+        }
+
+        if (checkPassword(userName, accountInfo)) {
+            out.println("Twitter Update Result:");
+            Status status = updateStatus(out, message, accountInfo);
+            if (null != status) {
+                String st = "Update status:" + status.getText() + " success,the status id:"
+                        + status.getId();
+                out.println(st);
+            } else {
+                out.println("The response status is null,update failed");
+            }
         } else {
-            out.println("The response status is null,update failed");
+            out.println("Your username or password is wrong.\nIf need help,please contact pengjianqing@gmail.com");
         }
 
         // Enumeration<String> en = req.getParameterNames();
@@ -122,6 +136,25 @@ public class UpdateStatusImpl extends UpdateStatus {
         // String value = req.getParameter(name);
         // out.println(name + " = " + value);
         // }
+    }
+
+    /**
+     * Check whether the password is right.
+     * 
+     * @param username
+     * @param password
+     * @return true if the username and password is right.
+     */
+    private boolean checkPassword(String password, AccountInfo accountInfo) {
+        boolean matched = false;
+
+        if (password.equals(accountInfo.getPassword())) {
+            matched = true;
+        } else {
+            matched = false;
+        }
+
+        return matched;
     }
 
     @Override

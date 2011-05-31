@@ -1,6 +1,9 @@
 
 package net.impjq.database;
 
+import net.impjq.account.AccountInfo;
+import twitter4j.auth.AccessToken;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -75,13 +78,13 @@ public class Sqlite implements DataBaseInterface {
      * @return true if add success,false if it is already existed.
      */
     public boolean addUser(String username, String password, String twitterAccessToken,
-            String twitterAccessTokenSecret,String email) {
+            String twitterAccessTokenSecret, String email) {
         String addUserSQL = "INSERT INTO " + TABLE_ACCOUNT_NAME + " ("
                 + Columns.Account.ACCOUNT_COLUMNS_USER_NAME + ","
                 + Columns.Account.ACCOUNT_COLUMNS_USER_PASSWORD + ","
                 + Columns.Account.ACCOUNT_COLUMNS_USER_TWITTER_ACCESS_TOKEN + ","
                 + Columns.Account.ACCOUNT_COLUMNS_USER_TWITTER_ACCESS_TOKEN_SECRET + ","
-                + Columns.Account.ACCOUNT_COLUMNS_USER_EMAIL+ " "
+                + Columns.Account.ACCOUNT_COLUMNS_USER_EMAIL + " "
                 + ") values('"
                 + username + "','"
                 + password + "','"
@@ -100,7 +103,8 @@ public class Sqlite implements DataBaseInterface {
 
     private boolean isUserExist(String username) {
         String queryUser = "SELECT (" + Columns.Account.ACCOUNT_COLUMNS_USER_NAME + ") from "
-                + TABLE_ACCOUNT_NAME + " where ( " + Columns.Account.ACCOUNT_COLUMNS_USER_NAME + " = '" + username + "' )";
+                + TABLE_ACCOUNT_NAME + " where ( " + Columns.Account.ACCOUNT_COLUMNS_USER_NAME
+                + " = '" + username + "' )";
         boolean existed = false;
 
         ResultSet resultSet = executeSqlQuery(queryUser);
@@ -114,6 +118,127 @@ public class Sqlite implements DataBaseInterface {
         }
 
         return existed;
+    }
+
+    /**
+     * Query the password.
+     * 
+     * @param username
+     * @return
+     */
+    private String queryPassword(String username) {
+        String queryUser = "SELECT (" + Columns.Account.ACCOUNT_COLUMNS_USER_PASSWORD + ") from "
+                + TABLE_ACCOUNT_NAME + " where ( " + Columns.Account.ACCOUNT_COLUMNS_USER_NAME
+                + " = '" + username + "' )";
+        String password = null;
+
+        ResultSet resultSet = executeSqlQuery(queryUser);
+        try {
+            password = resultSet.getString(Columns.Account.ACCOUNT_COLUMNS_USER_PASSWORD);
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+
+        }
+
+        return password;
+    }
+
+    /**
+     * Check the username and password.
+     * 
+     * @param username
+     * @param password
+     * @return true if username and password matched.
+     */
+    public boolean checkPassword(String username, String password) {
+        String sql = "SELECT (" + Columns.Account.ACCOUNT_COLUMNS_USER_NAME + ","
+                + Columns.Account.ACCOUNT_COLUMNS_USER_PASSWORD + ") from "
+                + TABLE_ACCOUNT_NAME + " where ( " + Columns.Account.ACCOUNT_COLUMNS_USER_NAME
+                + " = '" + username + "," + Columns.Account.ACCOUNT_COLUMNS_USER_PASSWORD + "="
+                + password + "' )";
+        boolean matched = false;
+
+        ResultSet resultSet = executeSqlQuery(sql);
+        try {
+            boolean moreRecords = resultSet.next();
+            matched = moreRecords;
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            matched = false;
+        }
+
+        return matched;
+    }
+
+    /**
+     * Query the AccessToken.
+     * 
+     * @param username
+     * @return
+     */
+    public AccessToken queryAccessToken(String username) {
+        String accessToken = null;
+        String accessTokenSecret = null;
+        String sql = "SELECT (" + Columns.Account.ACCOUNT_COLUMNS_USER_PASSWORD + ") from "
+                + TABLE_ACCOUNT_NAME + " where ( " + Columns.Account.ACCOUNT_COLUMNS_USER_NAME
+                + " = '" + username + "' )";
+        boolean matched = false;
+
+        ResultSet resultSet = executeSqlQuery(sql);
+        try {
+            boolean moreRecords = resultSet.next();
+            matched = moreRecords;
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            matched = false;
+        }
+
+        AccessToken token = new AccessToken(accessToken, accessTokenSecret);
+        return token;
+    }
+
+    public AccountInfo queryAccountInfo(String userName) {
+        AccountInfo accountInfo = new AccountInfo();
+
+        String sql = "SELECT * from "
+                + TABLE_ACCOUNT_NAME + " where ( " + Columns.Account.ACCOUNT_COLUMNS_USER_NAME
+                + " = '" + userName + "' )";
+
+        ResultSet resultSet = executeSqlQuery(sql);
+
+        try {
+            
+            String userPassword = resultSet
+                    .getString(Columns.Account.ACCOUNT_COLUMNS_USER_PASSWORD);
+            String userEmail = resultSet
+                    .getString(Columns.Account.ACCOUNT_COLUMNS_USER_EMAIL);
+            String userTwitterAccessToken = resultSet
+                    .getString(Columns.Account.ACCOUNT_COLUMNS_USER_TWITTER_ACCESS_TOKEN);
+            String userTwitterAccessTokenSecret = resultSet
+                    .getString(Columns.Account.ACCOUNT_COLUMNS_USER_TWITTER_ACCESS_TOKEN_SECRET);
+            String userFacebookAccessToken = resultSet
+                    .getString(Columns.Account.ACCOUNT_COLUMNS_USER_FACEBOOK_ACCESS_TOKEN);
+            String userFacebookAccessTokenSecret = resultSet
+                    .getString(Columns.Account.ACCOUNT_COLUMNS_USER_FACEBOOK_ACCESS_TOKEN_SECRET);
+            String userDisplayName = resultSet
+                    .getString(Columns.Account.ACCOUNT_COLUMNS_USER_DISPLAY_NAME);
+
+            accountInfo.setUserName(userName);
+            accountInfo.setEmail(userEmail);
+            accountInfo.setDisplayName(userDisplayName);
+            accountInfo.setTwitterAccessToken(userTwitterAccessToken);
+            accountInfo.setTwitterAccessTokenSecret(userTwitterAccessTokenSecret);
+            accountInfo.setFacebookAccessToken(userFacebookAccessToken);
+            accountInfo.setFacebookAccessTokenSecret(userFacebookAccessTokenSecret);
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        return accountInfo;
     }
 
     private boolean executeSql(String sql) {
