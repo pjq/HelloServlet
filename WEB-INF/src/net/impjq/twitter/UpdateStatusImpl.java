@@ -37,8 +37,8 @@ public class UpdateStatusImpl extends UpdateStatus {
     public static Status updateStatus(PrintWriter out, String message, AccountInfo accountInfo) {
         ConfigurationBuilder cb = new ConfigurationBuilder();
         cb.setDebugEnabled(true)
-                .setOAuthConsumerKey(CONSUMER_KEY)
-                .setOAuthConsumerSecret(CONSUMER_SECRET)
+                .setOAuthConsumerKey(accountInfo.getTwitterConsumerKey())
+                .setOAuthConsumerSecret(accountInfo.getTwitterConsumerSecret())
                 .setOAuthAccessToken(accountInfo.getTwitterAccessToken())
                 .setOAuthAccessTokenSecret(accountInfo.getTwitterAccessTokenSecret());
         TwitterFactory tf = new TwitterFactory(cb.build());
