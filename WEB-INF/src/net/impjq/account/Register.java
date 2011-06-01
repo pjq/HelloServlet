@@ -24,7 +24,7 @@ public class Register extends BaseHttpServlet {
 
         String username = req.getParameter("user_name");
         String password = req.getParameter("user_password");
-        String twitterConsumerKey= req.getParameter("user_twitter_consumer_key");
+        String twitterConsumerKey = req.getParameter("user_twitter_consumer_key");
         String twitterConsumerSecret = req.getParameter("user_twitter_consumer_secret");
         String twitterAccessToken = req.getParameter("user_twitter_access_token");
         String twitterAccessTokenSecret = req.getParameter("user_twitter_access_token_secret");
@@ -34,7 +34,7 @@ public class Register extends BaseHttpServlet {
             sendRegisterHtml();
         } else {
             boolean result = Sqlite.getInstance().addUser(username, password, twitterAccessToken,
-                    twitterAccessTokenSecret,email);
+                    twitterAccessTokenSecret, email, twitterConsumerKey, twitterConsumerSecret);
 
             if (result) {
                 out.println("Register success.");
@@ -67,16 +67,22 @@ public class Register extends BaseHttpServlet {
         out.println("method=POST>");
         out.println("User Name:");
         out.println("<input type=text size=20 name=user_name>");
-        //out.println("<br>");
+        // out.println("<br>");
         out.println("Password:");
         out.println("<input type=text size=20 name=user_password>");
-        //out.println("<br>");
+        // out.println("<br>");
         out.println("Email:");
         out.println("<input type=text size=20 name=user_email>");
         out.println("<br>");
+        out.println("Twitter ConsumerKey:");
+        out.println("<input type=text size=20 name=user_twitter_consumer_key>");
+        // out.println("<br>");
+        out.println("Twitter ConsumerKeySecret:");
+        out.println("<input type=text size=20 name=user_twitter_consumer_secret>");
+        out.println("<br>");
         out.println("Twitter AccessToken:");
         out.println("<input type=text size=20 name=user_twitter_access_token>");
-        //out.println("<br>");
+        // out.println("<br>");
         out.println("Twitter AccessTokenSecret:");
         out.println("<input type=text size=20 name=user_twitter_access_token_secret>");
         out.println("<br>");
