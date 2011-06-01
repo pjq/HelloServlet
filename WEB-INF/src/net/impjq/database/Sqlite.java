@@ -78,7 +78,7 @@ public class Sqlite implements DataBaseInterface {
      * @return true if add success,false if it is already existed.
      */
     public boolean addUser(String username, String password, String twitterAccessToken,
-            String twitterAccessTokenSecret, String email,String consumerKey,String consumerSecret) {
+            String twitterAccessTokenSecret, String email, String consumerKey, String consumerSecret) {
         String addUserSQL = "INSERT INTO " + TABLE_ACCOUNT_NAME + " ("
                 + Columns.Account.ACCOUNT_COLUMNS_USER_NAME + ","
                 + Columns.Account.ACCOUNT_COLUMNS_USER_PASSWORD + ","
@@ -214,11 +214,15 @@ public class Sqlite implements DataBaseInterface {
         ResultSet resultSet = executeSqlQuery(sql);
 
         try {
-            
+
             String userPassword = resultSet
                     .getString(Columns.Account.ACCOUNT_COLUMNS_USER_PASSWORD);
             String userEmail = resultSet
                     .getString(Columns.Account.ACCOUNT_COLUMNS_USER_EMAIL);
+            String userTwitterConsumerKey = resultSet
+                    .getString(Columns.Account.ACCOUNT_COLUMNS_USER_TWITTER_CONSUMER_KEY);
+            String userTwitterConsumerSecret = resultSet
+                    .getString(Columns.Account.ACCOUNT_COLUMNS_USER_TWITTER_CONSUMER_SECRET);
             String userTwitterAccessToken = resultSet
                     .getString(Columns.Account.ACCOUNT_COLUMNS_USER_TWITTER_ACCESS_TOKEN);
             String userTwitterAccessTokenSecret = resultSet
@@ -234,6 +238,8 @@ public class Sqlite implements DataBaseInterface {
             accountInfo.setPassword(userPassword);
             accountInfo.setEmail(userEmail);
             accountInfo.setDisplayName(userDisplayName);
+            accountInfo.setTwitterConsumerKey(userTwitterConsumerKey);
+            accountInfo.setTwitterConsumerSecret(userTwitterConsumerSecret);
             accountInfo.setTwitterAccessToken(userTwitterAccessToken);
             accountInfo.setTwitterAccessTokenSecret(userTwitterAccessTokenSecret);
             accountInfo.setFacebookAccessToken(userFacebookAccessToken);

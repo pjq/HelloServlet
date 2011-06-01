@@ -5,6 +5,8 @@ public class AccountInfo {
     private String mUserName;
     private String mPassword;
     private String mEmail;
+    private String mTwitterConsumerKey;
+    private String mTwitterConsumerSecret;
     private String mTwitterAccessToken;
     private String mTwitterAccessTokenSecret;
     private String mFacebookAccessToken;
@@ -75,11 +77,29 @@ public class AccountInfo {
         this.mDisplayName = displayName;
     }
 
+    public String getTwitterConsumerKey() {
+        return mTwitterConsumerKey;
+    }
+
+    public void setTwitterConsumerKey(String mTwitterConsumerKey) {
+        this.mTwitterConsumerKey = mTwitterConsumerKey;
+    }
+
+    public String getTwitterConsumerSecret() {
+        return mTwitterConsumerSecret;
+    }
+
+    public void setTwitterConsumerSecret(String mTwitterConsumerSecret) {
+        this.mTwitterConsumerSecret = mTwitterConsumerSecret;
+    }
+
     @Override
     public String toString() {
         // TODO Auto-generated method stub
         String string = "userName=" + mUserName + ",userEmail=" + mEmail + ",password=" + mPassword
                 + ",displayName=" + mDisplayName
+                + ",twitterConsumerKey=" + mTwitterConsumerKey + ",twitterConsumerSecret="
+                + mTwitterConsumerSecret
                 + ",twitterAccessToken=" + mTwitterAccessToken + ",twitterAccessTokenSecret"
                 + mTwitterAccessTokenSecret + ",facebookAccessToken=" + mFacebookAccessToken
                 + ",facebookAccessTokenSecret=" + mFacebookAccessTokenSecret;
