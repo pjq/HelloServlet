@@ -24,6 +24,8 @@ public class Register extends BaseHttpServlet {
 
         String username = req.getParameter("user_name");
         String password = req.getParameter("user_password");
+        String twitterConsumerKey= req.getParameter("user_twitter_consumer_key");
+        String twitterConsumerSecret = req.getParameter("user_twitter_consumer_secret");
         String twitterAccessToken = req.getParameter("user_twitter_access_token");
         String twitterAccessTokenSecret = req.getParameter("user_twitter_access_token_secret");
         String email = req.getParameter("user_email");
