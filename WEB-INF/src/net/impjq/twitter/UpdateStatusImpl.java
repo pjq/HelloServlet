@@ -100,6 +100,9 @@ public class UpdateStatusImpl extends UpdateStatus {
 
         String userName = hashMap.get(CommonParamString.PARAM_USERNAME);
         String password = hashMap.get(CommonParamString.PARAM_PASSWORD);
+        if (password.contains("\n")) {
+            password=password.replace("\n", "");
+        }
         String message = hashMap.get(CommonParamString.PARAM_MESSAGE);
 
         // updateStatus(userName, password, message);
