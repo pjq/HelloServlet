@@ -61,6 +61,9 @@ public class QueryDatabase extends HttpServlet {
                 out.println('\n');
                 for (String v : columnHeads) {
                     String val = resultSet.getString(v);
+                    if (v.contains("password")) {
+                        val="******";
+                    }
                     out.print(v + "=" + val + " ");
                 }
                 // out.println('\n');
