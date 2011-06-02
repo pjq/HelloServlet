@@ -42,8 +42,7 @@ public class Register2 extends BaseHttpServlet {
                         accessToken.getToken(),
                         accessToken.getTokenSecret(), email, CONSUMER_KEY, CONSUMER_SECRET);
                 if (result) {
-                    out.println("Register success,accessToken=" + accessToken.getToken()
-                            + ",TokenSecret()=" + accessToken.getTokenSecret());
+                    out.println("Register success");
                 } else {
                     out.println("Register failed,maybe the user already existed,please use another name.");
                 }
