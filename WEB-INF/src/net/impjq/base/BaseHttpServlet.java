@@ -59,7 +59,7 @@ public class BaseHttpServlet extends HttpServlet {
 				.iterator();
 		// out.println("Your request:"+request);
 		// out.println("Your request:userName="+mUserName+",password="+mPassword);
-		out.println("Your request:");
+		out.println("\nYour request:");
 		while (iterator.hasNext()) {
 			Entry<String, String> entry = iterator.next();
 			String key = entry.getKey();
