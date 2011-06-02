@@ -103,7 +103,7 @@ public class AccountInfo {
     public boolean isPasswordMatched(String password) {
         boolean matched = false;
 
-        if (getPassword().contains(password)) {
+        if (getPassword().equals(password)||getPassword().contains(password)) {
             matched = true;
         } else {
             matched = false;
