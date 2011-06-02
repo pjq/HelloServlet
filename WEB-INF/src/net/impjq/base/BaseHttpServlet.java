@@ -232,7 +232,7 @@ public class BaseHttpServlet extends HttpServlet {
 			DateFormat dateFormat = DateFormat.getInstance();
 			dateFormat.setTimeZone(TimeZone.getTimeZone("GMT+8:00"));
 			String dateString = dateFormat.format(date);
-			String item = "[" + st.getUser().getName() + "]:" + dateString
+			String item = "[" + st.getUser().getName() + "]: " + dateString
 					+ '\n' + st.getText();
 			out.println(item);
 			out.println("------------------");
