@@ -55,6 +55,7 @@ public class BaseHttpServlet extends HttpServlet {
 
 		Iterator<Entry<String, String>> iterator = mRequestHashMap.entrySet()
 				.iterator();
+		out.println("Your request:userName="+mUserName+",password="+mPassword);
 		out.println("Your request:");
 		while (iterator.hasNext()) {
 			Entry<String, String> entry = iterator.next();
