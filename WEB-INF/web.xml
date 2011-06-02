@@ -59,22 +59,31 @@
 
 
 	<servlet>
-		<servlet-name>Register</servlet-name>
-		<servlet-class>net.impjq.account.Register</servlet-class>
+		<servlet-name>WebRegister</servlet-name>
+		<servlet-class>net.impjq.account.web.Register</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>Register</servlet-name>
-		<url-pattern>/account/Register</url-pattern>
+		<servlet-name>WebRegister</servlet-name>
+		<url-pattern>/account/web/Register</url-pattern>
 	</servlet-mapping>
 	
 	
 	<servlet>
-		<servlet-name>Register2</servlet-name>
-		<servlet-class>net.impjq.account.Register2</servlet-class>
+		<servlet-name>WebRegister2</servlet-name>
+		<servlet-class>net.impjq.account.web.Register2</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>Register2</servlet-name>
-		<url-pattern>/account/Register2</url-pattern>
+		<servlet-name>WebRegister2</servlet-name>
+		<url-pattern>/account/web/Register2</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>WebAccountUpdate</servlet-name>
+		<servlet-class>net.impjq.account.web.Register2</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>WebAccountUpdate</servlet-name>
+		<url-pattern>/account/web/Update</url-pattern>
 	</servlet-mapping>
 
 </web-app>

@@ -105,6 +105,24 @@ public class Sqlite implements DataBaseInterface {
         return result;
     }
 
+    public boolean updateUser(String username, String password, String twitterAccessToken,
+            String twitterAccessTokenSecret, String email, String consumerKey, String consumerSecret) {
+        String addUserSQL = "UPDATE " + TABLE_ACCOUNT_NAME + " set "
+                + Columns.Account.ACCOUNT_COLUMNS_USER_TWITTER_ACCESS_TOKEN + " = '"
+                + twitterAccessToken + "',"
+                + Columns.Account.ACCOUNT_COLUMNS_USER_TWITTER_ACCESS_TOKEN_SECRET + " = '"
+                + twitterAccessTokenSecret + "',"
+                + Columns.Account.ACCOUNT_COLUMNS_USER_EMAIL + " = '" + email + "',"
+                + " where (" + Columns.Account.ACCOUNT_COLUMNS_USER_NAME + " = '" + username + ",)";
+
+        boolean result = false;
+        if (!isUserExist(username)) {
+            result = executeSql(addUserSQL);
+        }
+
+        return result;
+    }
+
     private boolean isUserExist(String username) {
         String queryUser = "SELECT (" + Columns.Account.ACCOUNT_COLUMNS_USER_NAME + ") from "
                 + TABLE_ACCOUNT_NAME + " where ( " + Columns.Account.ACCOUNT_COLUMNS_USER_NAME

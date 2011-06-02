@@ -93,6 +93,25 @@ public class AccountInfo {
         this.mTwitterConsumerSecret = mTwitterConsumerSecret;
     }
 
+    /**
+     * Check whether the password is right.
+     * 
+     * @param username
+     * @param password
+     * @return true if the username and password is right.
+     */
+    public boolean isPasswordMatched(String password) {
+        boolean matched = false;
+
+        if (mPassword.contains(password)) {
+            matched = true;
+        } else {
+            matched = false;
+        }
+
+        return matched;
+    }
+
     @Override
     public String toString() {
         // TODO Auto-generated method stub

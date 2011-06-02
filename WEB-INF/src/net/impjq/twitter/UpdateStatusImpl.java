@@ -107,7 +107,7 @@ public class UpdateStatusImpl extends UpdateStatus {
             message = "You message is null,use this default message";
         }
 
-        AccountInfo accountInfo = Sqlite.getInstance().queryAccountInfo(userName);
+        AccountInfo accountInfo = getAccountInfo(userName);
         out.print(accountInfo.toString());
 
         if (null == userName || null == password) {
@@ -115,7 +115,7 @@ public class UpdateStatusImpl extends UpdateStatus {
             return;
         }
 
-        if (checkPassword(password, accountInfo)) {
+        if (accountInfo.isPasswordMatched(password)) {
             out.println("Twitter Update Result:");
             Status status = updateStatus(out, message, accountInfo);
             if (null != status) {
@@ -136,25 +136,6 @@ public class UpdateStatusImpl extends UpdateStatus {
         // String value = req.getParameter(name);
         // out.println(name + " = " + value);
         // }
-    }
-
-    /**
-     * Check whether the password is right.
-     * 
-     * @param username
-     * @param password
-     * @return true if the username and password is right.
-     */
-    private boolean checkPassword(String password, AccountInfo accountInfo) {
-        boolean matched = false;
-
-        if (password.contains(accountInfo.getPassword())) {
-            matched = true;
-        } else {
-            matched = false;
-        }
-
-        return matched;
     }
 
     @Override

@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServlet;
  * 
  * @author pjq
  */
-public abstract class UpdateStatus extends HttpServlet {
+public abstract class UpdateStatus extends BaseHttpServlet {
     /**
 	 * 
 	 */

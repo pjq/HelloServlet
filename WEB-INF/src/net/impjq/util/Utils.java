@@ -54,4 +54,20 @@ public class Utils {
 
 		return result;
 	}
+	
+	   /**
+     * Check the string is empty
+     * 
+     * @param string
+     * @return true if the string is null or "".
+     */
+    public static boolean isEmpty(String string) {
+        boolean empty = false;
+
+        if (null == string || (null != string && string.equals(""))) {
+            empty = true;
+        }
+
+        return empty;
+    }
 }

@@ -1,6 +1,8 @@
 
 package net.impjq.base;
 
+import net.impjq.account.AccountInfo;
+import net.impjq.database.Sqlite;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
@@ -74,6 +76,30 @@ public class BaseHttpServlet extends HttpServlet {
         }
 
         return accessToken;
+    }
+
+    /**
+     * Check whether the password is right.
+     * 
+     * @param username
+     * @param password
+     * @return true if the username and password is right.
+     */
+    protected boolean checkPassword(String password, AccountInfo accountInfo) {
+        boolean matched = false;
+
+        if (password.contains(accountInfo.getPassword())) {
+            matched = true;
+        } else {
+            matched = false;
+        }
+
+        return matched;
+    }
+
+    protected AccountInfo getAccountInfo(String userName) {
+        AccountInfo accountInfo = Sqlite.getInstance().queryAccountInfo(userName);
+        return accountInfo;
     }
 
 }
