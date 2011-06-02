@@ -39,9 +39,16 @@ public class HomePage extends BaseHttpServlet {
         out.println("<br>");
         out.println("<a href=\"https://216.24.194.197:8443/HelloServlet/account/web/Update\">Update Info</a>");
         out.println("<br>");
-        out.println("<a href=\"http://wiki.impjq.net/doku.php?id=project:ftclient\">Click here for details.</a>");
+        out.println("<a href=\"http://wiki.impjq.net/doku.php?id=project:ftclient\">Click here for detail.</a>");
         out.println("<br>");
-        out.println("<a href=\"mailto:pengjianqing\">Contact me.</a>");
+        out.println("<a href=\"mailto:pengjianqing\">Contact me</a>");
+        out.println("<br>");
+
+        out.println("<h4>Source Code</h4>");
+        out.println("<a href=\"https://github.com/pjq/FTClient\">Android FTClient</a>");
+        out.println("<br>");
+        out.println("<a href=\"https://github.com/pjq/HelloServlet\">Servlet Server</a>");
+        out.println("<br>");
         out.println("</body>");
         out.println("</html>");
 
