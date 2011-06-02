@@ -70,10 +70,14 @@ public class BaseHttpServlet extends HttpServlet {
 			mUserName = "pjq";
 			mPassword = "123";
 		}
-		mUserName = "pjq";
-		mPassword = "123";
+		// mUserName = "pjq";
+		// mPassword = "123";
 		if (mPassword.contains("\n")) {
 			mPassword = mPassword.replace("\n", "");
+		}
+		
+		if (mUserName.contains("\n")) {
+			mUserName = mUserName.replace("\n", "");
 		}
 
 		mAccountInfo = getAccountInfo(mUserName);
