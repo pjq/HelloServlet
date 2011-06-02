@@ -1,8 +1,6 @@
 
 package net.impjq.account.web;
 
-import twitter4j.auth.AccessToken;
-
 import java.io.IOException;
 
 import javax.servlet.ServletException;
@@ -11,9 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import net.impjq.base.BaseHttpServlet;
 import net.impjq.database.Sqlite;
-import net.impjq.util.Utils;
 
-public class Register extends BaseHttpServlet {
+public class OldRegister extends BaseHttpServlet {
     /**
      * 
      */
@@ -27,40 +24,23 @@ public class Register extends BaseHttpServlet {
 
         String username = req.getParameter("user_name");
         String password = req.getParameter("user_password");
-        String twitterUserName = req.getParameter("user_twitter_user_name");
-        String twitterPassword = req.getParameter("user_twitter_password");
+        String twitterConsumerKey = req.getParameter("user_twitter_consumer_key");
+        String twitterConsumerSecret = req.getParameter("user_twitter_consumer_secret");
+        String twitterAccessToken = req.getParameter("user_twitter_access_token");
+        String twitterAccessTokenSecret = req.getParameter("user_twitter_access_token_secret");
         String email = req.getParameter("user_email");
 
         if (null == username || null == password) {
             sendRegisterHtml();
         } else {
-            boolean isTwitterAccountAvailable = !Utils.isEmpty(twitterUserName)
-                    && !Utils.isEmpty(twitterPassword);
+            boolean result = Sqlite.getInstance().addUser(username, password, twitterAccessToken,
+                    twitterAccessTokenSecret, email, twitterConsumerKey, twitterConsumerSecret);
 
-            AccessToken accessToken = null;
-            if (isTwitterAccountAvailable) {
-                accessToken = getXAuthAccessToken(twitterUserName, twitterPassword);
-            }
-
-            String token = "";
-            String tokenSecret = "";
-            if (null != accessToken) {
-                token = accessToken.getToken();
-                tokenSecret = accessToken.getTokenSecret();
-            } else {
-                out.println("Can't get the Twitter Access Token,may be your Twitter UserName/Password is wrong?");
-            }
-
-            boolean result = false;
-
-            result = Sqlite.getInstance().addUser(username, password,
-                    token, tokenSecret, email, CONSUMER_KEY, CONSUMER_SECRET);
             if (result) {
-                out.println("Register success");
+                out.println("Register success.");
             } else {
                 out.println("Register failed,maybe the user already existed,please use another name.");
             }
-
         }
 
     }
@@ -83,7 +63,7 @@ public class Register extends BaseHttpServlet {
         // }
         out.println("<P>");
         out.print("<form action=\"");
-        out.print("Register2\" ");
+        out.print("Register\" ");
         out.println("method=POST>");
         out.println("User Name:");
         out.println("<input type=text size=20 name=user_name>");
@@ -94,15 +74,22 @@ public class Register extends BaseHttpServlet {
         out.println("Email:");
         out.println("<input type=text size=20 name=user_email>");
         out.println("<br>");
-        out.println("Your Twitter User Name:");
-        out.println("<input type=text size=20 name=user_twitter_user_name>");
+        out.println("Twitter ConsumerKey:");
+        out.println("<input type=text size=20 name=user_twitter_consumer_key>");
         // out.println("<br>");
-        out.println("Your Twitter Password:");
-        out.println("<input type=text size=20 name=user_twitter_password>");
+        out.println("Twitter ConsumerKeySecret:");
+        out.println("<input type=text size=20 name=user_twitter_consumer_secret>");
+        out.println("<br>");
+        out.println("Twitter AccessToken:");
+        out.println("<input type=text size=20 name=user_twitter_access_token>");
+        // out.println("<br>");
+        out.println("Twitter AccessTokenSecret:");
+        out.println("<input type=text size=20 name=user_twitter_access_token_secret>");
         out.println("<br>");
         out.println("<input type=submit>");
         out.println("</form>");
         out.println("</body>");
         out.println("</html>");
+
     }
 }

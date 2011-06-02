@@ -103,7 +103,7 @@ public class AccountInfo {
     public boolean isPasswordMatched(String password) {
         boolean matched = false;
 
-        if (getPassword().equals(password)||getPassword().contains(password)) {
+        if (getPassword().equals(password) || getPassword().contains(password)) {
             matched = true;
         } else {
             matched = false;
@@ -115,13 +115,14 @@ public class AccountInfo {
     @Override
     public String toString() {
         // TODO Auto-generated method stub
-        String string = "userName=" + mUserName + ",userEmail=" + mEmail + ",password=" + mPassword
-                + ",displayName=" + mDisplayName
-                + ",twitterConsumerKey=" + mTwitterConsumerKey + ",twitterConsumerSecret="
+        String string = "userName=" + mUserName + ",\nuserEmail=" + mEmail + ",\npassword="
+                + "*******"
+                + ",\ndisplayName=" + mDisplayName
+                + ",\ntwitterConsumerKey=" + mTwitterConsumerKey + ",\ntwitterConsumerSecret="
                 + mTwitterConsumerSecret
-                + ",twitterAccessToken=" + mTwitterAccessToken + ",twitterAccessTokenSecret"
-                + mTwitterAccessTokenSecret + ",facebookAccessToken=" + mFacebookAccessToken
-                + ",facebookAccessTokenSecret=" + mFacebookAccessTokenSecret;
+                + ",\ntwitterAccessToken=" + mTwitterAccessToken + ",\ntwitterAccessTokenSecret="
+                + mTwitterAccessTokenSecret + ",\nfacebookAccessToken=" + mFacebookAccessToken
+                + ",\nfacebookAccessTokenSecret=" + mFacebookAccessTokenSecret;
         return string;
     }
 }

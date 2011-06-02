@@ -28,11 +28,14 @@ import net.impjq.database.Sqlite;
 import net.impjq.util.Utils;
 
 public class UpdateStatusImpl extends UpdateStatus {
-    public static final String CONSUMER_KEY = "Fa0VtxzeoxV7OuktLMrVLw";
-    public static final String CONSUMER_SECRET = "6X8el11OSkrnpeeziXeBNJbf1BBDRmBgFB0LNn7dY";
+    // public static final String CONSUMER_KEY = "Fa0VtxzeoxV7OuktLMrVLw";
+    // public static final String CONSUMER_SECRET =
+    // "6X8el11OSkrnpeeziXeBNJbf1BBDRmBgFB0LNn7dY";
 
-    public static final String ACCESS_TOKEN = "52646242-mgwUKKcx9AjEzMmnwHs8aQ6SQeSCa2plg2PU8zeDu";
-    public static final String ACCESS_TOKEN_SECRET = "DlyuSJyvugoMcgLnDV98vxJSjWFXEfmxkAZvMOgCHo";
+    // public static final String ACCESS_TOKEN =
+    // "52646242-mgwUKKcx9AjEzMmnwHs8aQ6SQeSCa2plg2PU8zeDu";
+    // public static final String ACCESS_TOKEN_SECRET =
+    // "DlyuSJyvugoMcgLnDV98vxJSjWFXEfmxkAZvMOgCHo";
 
     public static Status updateStatus(PrintWriter out, String message, AccountInfo accountInfo) {
         ConfigurationBuilder cb = new ConfigurationBuilder();
@@ -72,8 +75,9 @@ public class UpdateStatusImpl extends UpdateStatus {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         // TODO Auto-generated method stub
-        resp.setContentType("text/html;charset=UTF-8");
-        PrintWriter out = resp.getWriter();
+        super.doGet(req, resp);
+        // resp.setContentType("text/html;charset=UTF-8");
+        // PrintWriter out = resp.getWriter();
 
         // resp.setCharacterEncoding("UTF-8");
         // Enumeration<String> params = req.getParameterNames();
@@ -101,7 +105,7 @@ public class UpdateStatusImpl extends UpdateStatus {
         String userName = hashMap.get(CommonParamString.PARAM_USERNAME);
         String password = hashMap.get(CommonParamString.PARAM_PASSWORD);
         if (password.contains("\n")) {
-            password=password.replace("\n", "");
+            password = password.replace("\n", "");
         }
         String message = hashMap.get(CommonParamString.PARAM_MESSAGE);
 
