@@ -67,6 +67,15 @@
 		<url-pattern>/s2/UpdateStatus</url-pattern>
 	</servlet-mapping>
 
+	<servlet>
+		<servlet-name>TwitterGetUserTimeline</servlet-name>
+		<servlet-class>net.impjq.twitter.GetTimelineImpl</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>TwitterGetUserTimeline</servlet-name>
+		<url-pattern>/s1/GetTimeline</url-pattern>
+	</servlet-mapping>
+
 
 	<servlet>
 		<servlet-name>OldWebRegister</servlet-name>

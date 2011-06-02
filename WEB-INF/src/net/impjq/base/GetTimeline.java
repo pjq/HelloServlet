@@ -12,5 +12,5 @@ public abstract class GetTimeline extends BaseHttpServlet {
 	 */
     private static final long serialVersionUID = 5510470811990058855L;
 
-    abstract void getTimeline();
+    protected abstract void getTimeline();
 }
