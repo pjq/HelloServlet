@@ -59,12 +59,12 @@
 
 
 	<servlet>
-		<servlet-name>WebRegister</servlet-name>
+		<servlet-name>OldWebRegister</servlet-name>
 		<servlet-class>net.impjq.account.web.Register</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>WebRegister</servlet-name>
-		<url-pattern>/account/web/Register</url-pattern>
+		<servlet-name>OldWebRegister</servlet-name>
+		<url-pattern>/account/web/OldRegister</url-pattern>
 	</servlet-mapping>
 	
 	
@@ -74,7 +74,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>WebRegister2</servlet-name>
-		<url-pattern>/account/web/Register2</url-pattern>
+		<url-pattern>/account/web/Register</url-pattern>
 	</servlet-mapping>
 	
 	<servlet>
