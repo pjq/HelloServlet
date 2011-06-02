@@ -116,8 +116,8 @@ public class Sqlite implements DataBaseInterface {
                 + Columns.Account.ACCOUNT_COLUMNS_USER_TWITTER_CONSUMER_KEY + " = '" + consumerKey
                 + "',"
                 + Columns.Account.ACCOUNT_COLUMNS_USER_TWITTER_CONSUMER_SECRET + " = '"
-                + consumerSecret + "'"
-                + " where (" + Columns.Account.ACCOUNT_COLUMNS_USER_NAME + " = '" + username + ",)";
+                + consumerSecret + "' "
+                + " where (" + Columns.Account.ACCOUNT_COLUMNS_USER_NAME + " = '" + username + "' )";
 
         boolean result = false;
 
