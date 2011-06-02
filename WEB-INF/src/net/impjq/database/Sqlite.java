@@ -120,9 +120,8 @@ public class Sqlite implements DataBaseInterface {
                 + " where (" + Columns.Account.ACCOUNT_COLUMNS_USER_NAME + " = '" + username + ",)";
 
         boolean result = false;
-        if (!isUserExist(username)) {
-            result = executeSql(addUserSQL);
-        }
+
+        result = executeSql(addUserSQL);
 
         return result;
     }
