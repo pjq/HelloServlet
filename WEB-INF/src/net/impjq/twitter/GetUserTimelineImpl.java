@@ -40,11 +40,11 @@ public class GetUserTimelineImpl extends GetUserTimeline {
 		ResponseList<Status> responseList = null;
 		try {
 			responseList = createTwitterInstance().getHomeTimeline();
-			out.println("--------GetHomeTimeline Response:--------");
+			out.println("=========GetHomeTimeline Response:========");
 			printResponseList(responseList);
 
 			responseList = createTwitterInstance().getUserTimeline();
-			out.println("--------GetUserTimeline Response:--------");
+			out.println("========GetUserTimeline Response:========");
 			printResponseList(responseList);
 
 		} catch (TwitterException e) {
