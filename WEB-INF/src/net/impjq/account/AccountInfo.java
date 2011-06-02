@@ -115,7 +115,7 @@ public class AccountInfo {
     @Override
     public String toString() {
         // TODO Auto-generated method stub
-        String string = "userName=" + mUserName + ",userEmail=" + mEmail + ",password=" + mPassword
+        String string = "userName=" + mUserName + ",userEmail=" + mEmail + ",password=" + "******"
                 + ",displayName=" + mDisplayName
                 + ",twitterConsumerKey=" + mTwitterConsumerKey + ",twitterConsumerSecret="
                 + mTwitterConsumerSecret
