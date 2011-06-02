@@ -10,7 +10,7 @@ import twitter4j.ResponseList;
 import twitter4j.Status;
 import twitter4j.TwitterException;
 
-import net.impjq.base.GetTimeline;
+import net.impjq.base.GetUserTimeline;
 
 /**
  * Get Twitter UserTimeline
@@ -18,7 +18,7 @@ import net.impjq.base.GetTimeline;
  * @author pjq
  * 
  */
-public class GetTimelineImpl extends GetTimeline {
+public class GetUserTimelineImpl extends GetUserTimeline {
 
 	/**
 	 * 

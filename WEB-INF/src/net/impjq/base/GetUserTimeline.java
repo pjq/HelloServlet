@@ -6,7 +6,7 @@ package net.impjq.base;
  * 
  * @author pjq
  */
-public abstract class GetTimeline extends BaseHttpServlet {
+public abstract class GetUserTimeline extends BaseHttpServlet {
     /**
 	 * 
 	 */

@@ -69,7 +69,7 @@
 
 	<servlet>
 		<servlet-name>TwitterGetUserTimeline</servlet-name>
-		<servlet-class>net.impjq.twitter.GetTimelineImpl</servlet-class>
+		<servlet-class>net.impjq.twitter.GetUserTimelineImpl</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>TwitterGetUserTimeline</servlet-name>
