@@ -106,12 +106,14 @@ public class UpdateStatusImpl extends UpdateStatus {
         if (null == message) {
             message = "You message is null,use this default message";
         }
+        
+        out.println("Your UserName/Password="+userName+"/"+password);
 
         AccountInfo accountInfo = getAccountInfo(userName);
         out.print(accountInfo.toString());
 
         if (null == userName || null == password) {
-            out.println("Your username or password is null.\nIf need help,please contact pengjianqing@gmail.com");
+            out.println("\nYour username or password is null.\nIf need help,please contact pengjianqing@gmail.com");
             return;
         }
 
