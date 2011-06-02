@@ -113,7 +113,7 @@ public class UpdateStatusImpl extends UpdateStatus {
         out.print(accountInfo.toString());
 
         if (Utils.isEmpty(userName) || Utils.isEmpty(password)) {
-            out.println("\nYour username or password is null.\nIf need help,please contact pengjianqing@gmail.com");
+            out.println("\nYour input username or password is null.\nIf need help,please contact pengjianqing@gmail.com");
             return;
         }
 
