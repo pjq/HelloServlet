@@ -66,5 +66,15 @@
 		<servlet-name>Register</servlet-name>
 		<url-pattern>/account/Register</url-pattern>
 	</servlet-mapping>
+	
+	
+	<servlet>
+		<servlet-name>Register2</servlet-name>
+		<servlet-class>net.impjq.account.Register2</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Register2</servlet-name>
+		<url-pattern>/account/Register2</url-pattern>
+	</servlet-mapping>
 
 </web-app>
