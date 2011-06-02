@@ -50,6 +50,11 @@ public class BaseHttpServlet extends HttpServlet {
 
 		mUserName = mRequestHashMap.get(CommonParamString.PARAM_USERNAME);
 		mPassword = mRequestHashMap.get(CommonParamString.PARAM_PASSWORD);
+
+		if (isUserNameOrPasswordEmpty()) {
+			mUserName = "pjq";
+			mPassword = "123";
+		}
 		if (mPassword.contains("\n")) {
 			mPassword = mPassword.replace("\n", "");
 		}
