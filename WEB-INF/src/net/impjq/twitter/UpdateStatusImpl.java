@@ -84,8 +84,8 @@ public class UpdateStatusImpl extends UpdateStatus {
         String request = Utils.readFromInputStream(req.getInputStream());
 
         HashMap<String, String> hashMap = parserPostParameters(request);
-        int size = hashMap.size();
-        out.println("parameters size=" + size);
+        // int size = hashMap.size();
+        // out.println("parameters size=" + size);
 
         Iterator<Entry<String, String>> iterator = hashMap.entrySet()
                 .iterator();
@@ -110,10 +110,10 @@ public class UpdateStatusImpl extends UpdateStatus {
             message = "You message is null,use this default message";
         }
 
-        out.println("Your UserName/Password=" + userName + "/" + password);
+        // out.println("Your UserName/Password=" + userName + "/" + password);
 
         AccountInfo accountInfo = getAccountInfo(userName);
-        //out.print(accountInfo.toString());
+        // out.print(accountInfo.toString());
 
         if (Utils.isEmpty(userName) || Utils.isEmpty(password)) {
             out.println("\nYour input username or password is null.\nIf need help,please contact pengjianqing@gmail.com");
