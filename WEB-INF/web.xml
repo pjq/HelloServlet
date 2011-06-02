@@ -79,7 +79,7 @@
 	
 	<servlet>
 		<servlet-name>WebAccountUpdate</servlet-name>
-		<servlet-class>net.impjq.account.web.Register2</servlet-class>
+		<servlet-class>net.impjq.account.web.Update</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>WebAccountUpdate</servlet-name>
