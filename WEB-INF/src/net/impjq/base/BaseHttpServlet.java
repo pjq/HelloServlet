@@ -223,8 +223,9 @@ public class BaseHttpServlet extends HttpServlet {
 	 * @param responseList
 	 */
 	protected void printResponseList(ResponseList<Status> responseList) {
-		for (Status st : responseList) {			
-			out.println("[" + st.getUser().getName() + "]:" + st.getText());
+		for (Status st : responseList) {
+			out.println("[" + st.getUser().getName() + "]:" + st.getCreatedAt()
+					+ "/" + st.getSource() + '\n' + st.getText());
 			out.println("------------------");
 		}
 	}
