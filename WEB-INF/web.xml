@@ -73,7 +73,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>TwitterGetUserTimeline</servlet-name>
-		<url-pattern>/s1/GetTimeline</url-pattern>
+		<url-pattern>/s1/GetUserTimeline</url-pattern>
 	</servlet-mapping>
 
 
