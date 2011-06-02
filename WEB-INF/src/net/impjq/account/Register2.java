@@ -42,7 +42,8 @@ public class Register2 extends BaseHttpServlet {
                         accessToken.getToken(),
                         accessToken.getTokenSecret(), email, CONSUMER_KEY, CONSUMER_SECRET);
                 if (result) {
-                    out.println("Register success.");
+                    out.println("Register success,accessToken=" + accessToken.getToken()
+                            + ",TokenSecret()=" + accessToken.getTokenSecret());
                 } else {
                     out.println("Register failed,maybe the user already existed,please use another name.");
                 }
@@ -72,7 +73,7 @@ public class Register2 extends BaseHttpServlet {
         // }
         out.println("<P>");
         out.print("<form action=\"");
-        out.print("Register\" ");
+        out.print("Register2\" ");
         out.println("method=POST>");
         out.println("User Name:");
         out.println("<input type=text size=20 name=user_name>");
