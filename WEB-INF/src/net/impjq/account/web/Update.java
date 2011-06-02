@@ -111,7 +111,7 @@ public class Update extends BaseHttpServlet {
         out.println("<br>");
         out.println("Your new Email:");
         out.println("<input type=text size=20 name=user_email>");
-        out.println("<br>");
+        // out.println("<br>");
         out.println("Your new Twitter User Name:");
         out.println("<input type=text size=20 name=user_twitter_user_name>");
         // out.println("<br>");
