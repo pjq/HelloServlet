@@ -1,3 +1,4 @@
+
 package net.impjq.facebook;
 
 import java.io.IOException;
@@ -9,34 +10,31 @@ import javax.servlet.http.HttpServletResponse;
 
 import net.impjq.base.UpdateStatus;
 
+/**
+ * Implement update the status for Facebook.
+ * 
+ * @author pjq0274
+ */
 public class UpdateStatusImpl extends UpdateStatus {
 
-	/**
+    /**
 	 * 
 	 */
-	private static final long serialVersionUID = 8259034440405737745L;
+    private static final long serialVersionUID = 8259034440405737745L;
 
-	@Override
-	public void updateStatus(String userName, String password, String message) {
-		// TODO Auto-generated method stub
+    @Override
+    public void updateStatus(String userName, String password, String message) {
+        // TODO Auto-generated method stub
 
-	}
+    }
 
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		resp.setContentType("text/html");
-		PrintWriter out = resp.getWriter();
-		out.println("Facebook Update");
-	}
-
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		// super.doPost(req, resp);
-		doGet(req, resp);
-	}
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
+        // TODO Auto-generated method stub
+        resp.setContentType("text/html");
+        PrintWriter out = resp.getWriter();
+        out.println("Facebook Update");
+    }
 
 }

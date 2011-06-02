@@ -3,6 +3,13 @@ package net.impjq.database;
 
 import java.sql.*;
 
+/**
+ * The database manager,use it to get the connection. BUT all most the
+ * operations are implemented in {@link SqliteManager}
+ * 
+ * @see SqliteManager
+ * @author pjq0274
+ */
 public class DataManager {
     private static DataManager mInstance;
     private Connection mConnection;
@@ -64,7 +71,7 @@ public class DataManager {
                     try {
                         mConnection = null;
                         mConnection = DriverManager
-                                .getConnection("jdbc:sqlite:" + Sqlite.DATABASE_NAME);
+                                .getConnection("jdbc:sqlite:" + SqliteManager.DATABASE_NAME);
                     } catch (SQLException e) {
                         // TODO Auto-generated catch block
                         e.printStackTrace();
@@ -88,7 +95,7 @@ public class DataManager {
                         sqlex.printStackTrace();
                         mConnection = null;
                         System.exit(1); // terminate program
-                       
+
                     }
                     break;
                 }

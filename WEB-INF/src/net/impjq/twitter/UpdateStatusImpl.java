@@ -7,12 +7,8 @@ import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
 import twitter4j.conf.ConfigurationBuilder;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map.Entry;
@@ -24,10 +20,20 @@ import javax.servlet.http.HttpServletResponse;
 import net.impjq.account.AccountInfo;
 import net.impjq.base.CommonParamString;
 import net.impjq.base.UpdateStatus;
-import net.impjq.database.Sqlite;
 import net.impjq.util.Utils;
 
+/**
+ * Handle update status for Twitter.
+ * 
+ * @author pjq0274
+ */
 public class UpdateStatusImpl extends UpdateStatus {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 4979679200836047678L;
+
     // public static final String CONSUMER_KEY = "Fa0VtxzeoxV7OuktLMrVLw";
     // public static final String CONSUMER_SECRET =
     // "6X8el11OSkrnpeeziXeBNJbf1BBDRmBgFB0LNn7dY";
@@ -37,7 +43,10 @@ public class UpdateStatusImpl extends UpdateStatus {
     // public static final String ACCESS_TOKEN_SECRET =
     // "DlyuSJyvugoMcgLnDV98vxJSjWFXEfmxkAZvMOgCHo";
 
-    public static Status updateStatus(PrintWriter out, String message, AccountInfo accountInfo) {
+    /**
+     * Update the status for twitter.
+     */
+    private Status updateStatus(PrintWriter out, String message, AccountInfo accountInfo) {
         ConfigurationBuilder cb = new ConfigurationBuilder();
         cb.setDebugEnabled(true)
                 .setOAuthConsumerKey(accountInfo.getTwitterConsumerKey())
@@ -56,19 +65,14 @@ public class UpdateStatusImpl extends UpdateStatus {
             e.printStackTrace();
             out.println(e.toString());
         }
+
         return status;
     }
-
-    /**
-	 * 
-	 */
-    private static final long serialVersionUID = 4979679200836047678L;
 
     @Override
     public void updateStatus(String userName, String password, String message) {
         // TODO Auto-generated method stub
-        // TwitterAuth.getAccessToken();
-        // updateStatus(message);
+
     }
 
     @Override
@@ -76,16 +80,8 @@ public class UpdateStatusImpl extends UpdateStatus {
             throws ServletException, IOException {
         // TODO Auto-generated method stub
         super.doGet(req, resp);
-        // resp.setContentType("text/html;charset=UTF-8");
-        // PrintWriter out = resp.getWriter();
-
-        // resp.setCharacterEncoding("UTF-8");
-        // Enumeration<String> params = req.getParameterNames();
 
         String request = Utils.readFromInputStream(req.getInputStream());
-
-        // String chinese="中文测试，Chinese  Test";
-        // out.println(chinese);
 
         HashMap<String, String> hashMap = parserPostParameters(request);
         int size = hashMap.size();
@@ -137,14 +133,6 @@ public class UpdateStatusImpl extends UpdateStatus {
         } else {
             out.println("Your username or password is wrong.\nIf need help,please contact pengjianqing@gmail.com");
         }
-
-        // Enumeration<String> en = req.getParameterNames();
-        //
-        // while (en.hasMoreElements()) {
-        // String name = (String) en.nextElement();
-        // String value = req.getParameter(name);
-        // out.println(name + " = " + value);
-        // }
     }
 
     @Override
@@ -154,32 +142,4 @@ public class UpdateStatusImpl extends UpdateStatus {
         // super.doPost(req, resp);
         doGet(req, resp);
     }
-
-    public String getStream(HttpServletRequest request) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(request
-                .getInputStream(), "UTF-8"));
-        StringBuffer ReString = new StringBuffer();
-        String tmp = "";
-        while (true) {
-            tmp = br.readLine();
-            if (tmp == null)
-                break;
-            else
-                ReString.append(tmp);
-        }
-        return ReString.toString();
-    }
-
-    // public String urlDecode(String str) {
-    // String result = str;
-    // try {
-    // result = URLDecoder.decode(str, "UTF-8");
-    // } catch (UnsupportedEncodingException e) {
-    // // TODO Auto-generated catch block
-    // e.printStackTrace();
-    // }
-    //
-    // return result;
-    // }
-
 }

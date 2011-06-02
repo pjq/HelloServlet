@@ -10,9 +10,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import net.impjq.base.BaseHttpServlet;
-import net.impjq.database.Sqlite;
+import net.impjq.database.SqliteManager;
 import net.impjq.util.Utils;
 
+/**
+ * Register handle.It support xAuth,so the user can register with the twitter
+ * username/password,and it will auto get the AccessToken/Secret.Also the user
+ * can update their Twitter username/password in {@link Update} <br>
+ * It will NOT REMEMBER the Twitter username/password.
+ * 
+ * @see OldRegister
+ * @see Update
+ * @author pjq0274
+ */
 public class Register extends BaseHttpServlet {
     /**
      * 
@@ -53,34 +63,29 @@ public class Register extends BaseHttpServlet {
 
             boolean result = false;
 
-            result = Sqlite.getInstance().addUser(username, password,
+            // Add an new user.
+            result = SqliteManager.getInstance().addUser(username, password,
                     token, tokenSecret, email, CONSUMER_KEY, CONSUMER_SECRET);
             if (result) {
                 out.println("Register success");
             } else {
                 out.println("Register failed,maybe the user already existed,please use another name.");
             }
-
         }
 
     }
 
+    /**
+     * Send the register html.
+     */
     private void sendRegisterHtml() {
         out.println("<html>");
         out.println("<head>");
-        out.println("<title>Register</title>");
+        out.println("<title>Register(It will NOT REMEMBER your Twitter UserName and Password.)</title>");
         out.println("</head>");
         out.println("<body>");
         out.println("<h3>Register</h3>");
 
-        // if (firstName != null || lastName != null) {
-        // out.println("First Name:");
-        // out.println(" = " + HTMLFilter.filter(firstName) + "<br>");
-        // out.println("Last Name:");
-        // out.println(" = " + HTMLFilter.filter(lastName));
-        // } else {
-        // out.println("No Parameters, Please enter some");
-        // }
         out.println("<P>");
         out.print("<form action=\"");
         out.print("Register2\" ");

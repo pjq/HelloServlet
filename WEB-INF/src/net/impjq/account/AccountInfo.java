@@ -1,6 +1,14 @@
 
 package net.impjq.account;
 
+import net.impjq.database.SqliteManager;
+
+/**
+ * The user account info.It will used to store the current user info.
+ * 
+ * @see SqliteManager#queryAccountInfo(String)
+ * @author pjq0274
+ */
 public class AccountInfo {
     private String mUserName;
     private String mPassword;

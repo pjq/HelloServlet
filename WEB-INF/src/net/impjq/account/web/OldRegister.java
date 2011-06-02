@@ -8,8 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import net.impjq.base.BaseHttpServlet;
-import net.impjq.database.Sqlite;
+import net.impjq.database.SqliteManager;
 
+/**
+ * Another register,you can register with your special twitter consumer
+ * key/secret,twitter access token/secret.
+ * 
+ * @see Register
+ * @deprecated Please use {@link Register}.
+ * @author pjq0274
+ */
 public class OldRegister extends BaseHttpServlet {
     /**
      * 
@@ -33,7 +41,7 @@ public class OldRegister extends BaseHttpServlet {
         if (null == username || null == password) {
             sendRegisterHtml();
         } else {
-            boolean result = Sqlite.getInstance().addUser(username, password, twitterAccessToken,
+            boolean result = SqliteManager.getInstance().addUser(username, password, twitterAccessToken,
                     twitterAccessTokenSecret, email, twitterConsumerKey, twitterConsumerSecret);
 
             if (result) {
@@ -45,6 +53,9 @@ public class OldRegister extends BaseHttpServlet {
 
     }
 
+    /**
+     * Send the register html.
+     */
     private void sendRegisterHtml() {
         out.println("<html>");
         out.println("<head>");

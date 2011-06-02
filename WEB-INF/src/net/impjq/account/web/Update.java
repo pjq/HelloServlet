@@ -11,9 +11,15 @@ import javax.servlet.http.HttpServletResponse;
 
 import net.impjq.account.AccountInfo;
 import net.impjq.base.BaseHttpServlet;
-import net.impjq.database.Sqlite;
+import net.impjq.database.SqliteManager;
 import net.impjq.util.Utils;
 
+/**
+ * The user can update the email,and TwitterAccessToken with the new Twitter
+ * username and password.
+ * 
+ * @author pjq0274
+ */
 public class Update extends BaseHttpServlet {
     /**
      * 
@@ -63,7 +69,7 @@ public class Update extends BaseHttpServlet {
 
                 boolean result = false;
                 if (null != accessToken) {
-                    result = Sqlite.getInstance().updateUser(username, password,
+                    result = SqliteManager.getInstance().updateUser(username, password,
                             token,
                             tokenSecret, email, CONSUMER_KEY, CONSUMER_SECRET);
                     if (result) {

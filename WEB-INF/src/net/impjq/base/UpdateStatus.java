@@ -5,8 +5,6 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.HashMap;
 
-import javax.servlet.http.HttpServlet;
-
 /**
  * Update Status interface
  * 

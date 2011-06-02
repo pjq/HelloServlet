@@ -1,12 +1,29 @@
 
 package net.impjq.database;
 
+/**
+ * Define the columns of the sqlite database here.
+ * 
+ * @see SqliteManager
+ * @author pjq0274
+ */
 public class Columns {
 
+    /**
+     * The base columns.
+     * 
+     * @author pjq0274
+     */
     class BaseColumns {
         public static final String COLUMNS_USER_ID = "user_id";
     }
 
+    /**
+     * The account table columns,right now one record represent one registed
+     * user.
+     * 
+     * @author pjq0274
+     */
     class Account extends BaseColumns {
         public static final String ACCOUNT_COLUMNS_USER_NAME = "user_name";
         public static final String ACCOUNT_COLUMNS_USER_DISPLAY_NAME = "user_display_name";
