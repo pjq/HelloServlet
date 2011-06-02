@@ -3,6 +3,8 @@ package net.impjq.base;
 import net.impjq.account.AccountInfo;
 import net.impjq.database.SqliteManager;
 import net.impjq.util.Utils;
+import twitter4j.ResponseList;
+import twitter4j.Status;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
@@ -75,7 +77,7 @@ public class BaseHttpServlet extends HttpServlet {
 		if (mPassword.contains("\n")) {
 			mPassword = mPassword.replace("\n", "");
 		}
-		
+
 		if (mUserName.contains("\n")) {
 			mUserName = mUserName.replace("\n", "");
 		}
@@ -213,6 +215,17 @@ public class BaseHttpServlet extends HttpServlet {
 		}
 
 		return result;
+	}
+
+	/**
+	 * PrintWriter the ResponseList
+	 * 
+	 * @param responseList
+	 */
+	protected void printResponseList(ResponseList<Status> responseList) {
+		for (Status st : responseList) {
+			out.println(st.getText());
+		}
 	}
 
 }
