@@ -2,6 +2,16 @@
   '-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN'
   'http://java.sun.com/dtd/web-app_2_3.dtd'>
 <web-app>
+
+	<servlet>
+		<servlet-name>HomePage</servlet-name>
+		<servlet-class>HomePage</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>HomePage</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+
 	<servlet>
 		<servlet-name>hello</servlet-name>
 		<servlet-class>HelloTomcat</servlet-class>
@@ -66,8 +76,8 @@
 		<servlet-name>OldWebRegister</servlet-name>
 		<url-pattern>/account/web/OldRegister</url-pattern>
 	</servlet-mapping>
-	
-	
+
+
 	<servlet>
 		<servlet-name>WebRegister</servlet-name>
 		<servlet-class>net.impjq.account.web.Register</servlet-class>
@@ -76,7 +86,7 @@
 		<servlet-name>WebRegister</servlet-name>
 		<url-pattern>/account/web/Register</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
 		<servlet-name>WebAccountUpdate</servlet-name>
 		<servlet-class>net.impjq.account.web.Update</servlet-class>
