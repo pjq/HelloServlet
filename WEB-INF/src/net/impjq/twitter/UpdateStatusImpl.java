@@ -113,7 +113,7 @@ public class UpdateStatusImpl extends UpdateStatus {
         out.println("Your UserName/Password=" + userName + "/" + password);
 
         AccountInfo accountInfo = getAccountInfo(userName);
-        out.print(accountInfo.toString());
+        //out.print(accountInfo.toString());
 
         if (Utils.isEmpty(userName) || Utils.isEmpty(password)) {
             out.println("\nYour input username or password is null.\nIf need help,please contact pengjianqing@gmail.com");
@@ -124,8 +124,7 @@ public class UpdateStatusImpl extends UpdateStatus {
             out.println("Twitter Update Result:");
             Status status = updateStatus(out, message, accountInfo);
             if (null != status) {
-                String st = "Update status:" + status.getText() + " success,the status id:"
-                        + status.getId();
+                String st = "Update status success:" + status.getText();
                 out.println(st);
             } else {
                 out.println("The response status is null,update failed");
