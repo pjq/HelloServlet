@@ -20,8 +20,8 @@ import twitter4j.auth.AccessToken;
 import twitter4j.auth.RequestToken;
 
 public class TwitterAuth {
-	public static final String CONSUMER_KEY="";
-	public static final String CONSUMER_SECRET="";
+	public static final String CONSUMER_KEY="Fa0VtxzeoxV7OuktLMrVLw";
+	public static final String CONSUMER_SECRET="6X8el11OSkrnpeeziXeBNJbf1BBDRmBgFB0LNn7dY";
 	public void twitterAuth() {
 		// Twitter twitter=Twitter.
 
