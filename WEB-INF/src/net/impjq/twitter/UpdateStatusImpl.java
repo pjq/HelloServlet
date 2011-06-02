@@ -86,16 +86,16 @@ public class UpdateStatusImpl extends UpdateStatus {
 		// int size = hashMap.size();
 		// out.println("parameters size=" + size);
 
-		Iterator<Entry<String, String>> iterator = hashMap.entrySet()
-				.iterator();
-		out.println("Your request:");
-		while (iterator.hasNext()) {
-			Entry<String, String> entry = iterator.next();
-			String key = entry.getKey();
-			String value = entry.getValue();
-
-			out.println(key + "=" + value);
-		}
+		// Iterator<Entry<String, String>> iterator = hashMap.entrySet()
+		// .iterator();
+		// out.println("Your request:");
+		// while (iterator.hasNext()) {
+		// Entry<String, String> entry = iterator.next();
+		// String key = entry.getKey();
+		// String value = entry.getValue();
+		//
+		// out.println(key + "=" + value);
+		// }
 
 		String userName = getUserName();
 		String password = getPassword();

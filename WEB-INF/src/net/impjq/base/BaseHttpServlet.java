@@ -15,6 +15,8 @@ import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map.Entry;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -50,6 +52,17 @@ public class BaseHttpServlet extends HttpServlet {
 
 		mUserName = mRequestHashMap.get(CommonParamString.PARAM_USERNAME);
 		mPassword = mRequestHashMap.get(CommonParamString.PARAM_PASSWORD);
+
+		Iterator<Entry<String, String>> iterator = mRequestHashMap.entrySet()
+				.iterator();
+		out.println("Your request:");
+		while (iterator.hasNext()) {
+			Entry<String, String> entry = iterator.next();
+			String key = entry.getKey();
+			String value = entry.getValue();
+
+			out.println(key + "=" + value);
+		}
 
 		if (isUserNameOrPasswordEmpty()) {
 			mUserName = "pjq";
