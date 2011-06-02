@@ -16,8 +16,11 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.text.DateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.TimeZone;
 import java.util.Map.Entry;
 
 import javax.servlet.ServletException;
@@ -224,10 +227,15 @@ public class BaseHttpServlet extends HttpServlet {
 	 */
 	protected void printResponseList(ResponseList<Status> responseList) {
 		for (Status st : responseList) {
-			out.println("[" + st.getUser().getName() + "]:"
-					+ st.getCreatedAt().toLocaleString() + '\n' + st.getText());
+
+			Date date = st.getCreatedAt();
+			DateFormat dateFormat = DateFormat.getInstance();
+			dateFormat.setTimeZone(TimeZone.getTimeZone("GMT+8:00"));
+			String dateString = dateFormat.format(date);
+			String item = "[" + st.getUser().getName() + "]:" + dateString
+					+ '\n' + st.getText();
+			out.println(item);
 			out.println("------------------");
 		}
 	}
-
 }
