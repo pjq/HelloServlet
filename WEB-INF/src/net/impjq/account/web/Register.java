@@ -36,10 +36,10 @@ public class Register extends BaseHttpServlet {
         // TODO Auto-generated method stub
         super.doGet(req, resp);
 
-        String username = req.getParameter(CommonParamString.PARAM_USERNAME);
-        String password = req.getParameter(CommonParamString.PARAM_PASSWORD);
-        String twitterUserName = req.getParameter("user_twitter_user_name");
-        String twitterPassword = req.getParameter("user_twitter_password");
+        String username = getUserName();
+        String password = getPassword();
+        String twitterUserName = getTwitterUserName();
+        String twitterPassword = getTwitterUserPassword();
         String email = req.getParameter("user_email");
 
         if (null == username || null == password) {
@@ -98,13 +98,15 @@ public class Register extends BaseHttpServlet {
         out.println("<input type=text size=20 name=" + CommonParamString.PARAM_PASSWORD + ">");
         // out.println("<br>");
         out.println("Email:");
-        out.println("<input type=text size=20 name=user_email>");
+        out.println("<input type=text size=20 name=" + CommonParamString.PARAM_EMAIL + ">");
         out.println("<br>");
         out.println("Your Twitter User Name:");
-        out.println("<input type=text size=20 name=user_twitter_user_name>");
+        out.println("<input type=text size=20 name=" + CommonParamString.PARAM_TWITTER_USER_NAME
+                + ">");
         // out.println("<br>");
         out.println("Your Twitter Password:");
-        out.println("<input type=text size=20 name=user_twitter_password>");
+        out.println("<input type=text size=20 name="
+                + CommonParamString.PARAM_TWITTER_USER_PASSWORD + ">");
         out.println("<br>");
         out.println("<input type=submit>");
         out.println("</form>");

@@ -77,14 +77,9 @@
 	</servlet-mapping>
 
 
-	<servlet>
-		<servlet-name>OldWebRegister</servlet-name>
-		<servlet-class>net.impjq.account.web.OldRegister</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>OldWebRegister</servlet-name>
-		<url-pattern>/account/web/OldRegister</url-pattern>
-	</servlet-mapping>
+	<!-- servlet> <servlet-name>OldWebRegister</servlet-name> <servlet-class>net.impjq.account.web.OldRegister</servlet-class> 
+		</servlet> <servlet-mapping> <servlet-name>OldWebRegister</servlet-name> 
+		<url-pattern>/account/web/OldRegister</url-pattern> </servlet-mapping -->
 
 
 	<servlet>

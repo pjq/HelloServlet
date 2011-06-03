@@ -74,11 +74,13 @@ public class BaseHttpServlet extends HttpServlet {
             mPassword = mRequestHashMap.get(CommonParamString.PARAM_PASSWORD);
         }
 
-        mUserName = mRequestHashMap.get(CommonParamString.PARAM_USERNAME);
-        mPassword = mRequestHashMap.get(CommonParamString.PARAM_PASSWORD);
-        mEmail = mRequestHashMap.get(CommonParamString.PARAM_EMAIL);
-        mTwitterUserName = mRequestHashMap.get(CommonParamString.PARAM_TWITTER_USER_NAME);
-        mTwitterUserPassword = mRequestHashMap.get(CommonParamString.PARAM_TWITTER_USER_PASSWORD);
+        mUserName = removeEnter(mRequestHashMap.get(CommonParamString.PARAM_USERNAME));
+        mPassword = removeEnter(mRequestHashMap.get(CommonParamString.PARAM_PASSWORD));
+        mEmail = removeEnter(mRequestHashMap.get(CommonParamString.PARAM_EMAIL));
+        mTwitterUserName = removeEnter(mRequestHashMap
+                .get(CommonParamString.PARAM_TWITTER_USER_NAME));
+        mTwitterUserPassword = removeEnter(mRequestHashMap
+                .get(CommonParamString.PARAM_TWITTER_USER_PASSWORD));
 
         Iterator<Entry<String, String>> iterator = mRequestHashMap.entrySet()
                 .iterator();
@@ -97,19 +99,23 @@ public class BaseHttpServlet extends HttpServlet {
             // mUserName = "pjq";
             // mPassword = "123";
         }
-        // mUserName = "pjq";
-        // mPassword = "123";
-        if (null != mPassword && mPassword.contains("\n")) {
-            mPassword = mPassword.replace("\n", "");
-        }
-
-        if (null != mUserName && mUserName.contains("\n")) {
-            mUserName = mUserName.replace("\n", "");
-        }
 
         if (null != mUserName) {
             mAccountInfo = getAccountInfo(mUserName);
         }
+    }
+
+    /**
+     * Remove the '\n'.
+     * 
+     * @param string
+     * @return
+     */
+    private String removeEnter(String string) {
+        if (null != string && string.contains("\n")) {
+            string = string.replace("\n", "");
+        }
+        return string;
     }
 
     @Override
@@ -194,7 +200,7 @@ public class BaseHttpServlet extends HttpServlet {
      * @param password
      */
     public AccessToken getXAuthAccessToken(String userName, String password) {
-        out.println("getXAuthAccessToken,userName="+userName+",password="+password);
+        out.println("getXAuthAccessToken,userName=" + userName + ",password=" + password);
         ConfigurationBuilder cb = new ConfigurationBuilder();
         cb.setDebugEnabled(true).setOAuthConsumerKey(CONSUMER_KEY)
                 .setOAuthConsumerSecret(CONSUMER_SECRET);
