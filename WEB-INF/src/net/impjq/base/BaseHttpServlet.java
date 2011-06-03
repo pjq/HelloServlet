@@ -88,8 +88,8 @@ public class BaseHttpServlet extends HttpServlet {
         }
 
         if (isUserNameOrPasswordEmpty()) {
-            mUserName = "pjq";
-            mPassword = "123";
+            // mUserName = "pjq";
+            // mPassword = "123";
         }
         // mUserName = "pjq";
         // mPassword = "123";

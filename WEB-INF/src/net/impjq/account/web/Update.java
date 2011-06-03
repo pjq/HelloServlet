@@ -46,7 +46,7 @@ public class Update extends BaseHttpServlet {
         } else {
             AccountInfo accountInfo = getAccountInfo();
 
-            if (accountInfo.isPasswordMatched(password)) {// Right password
+            if (isPasswordMatched()) {// Right password
                 boolean isTwitterAccountAvailable = !Utils.isEmpty(twitterUserName)
                         && !Utils.isEmpty(twitterPassword);
 
