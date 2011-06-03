@@ -40,8 +40,8 @@ public class BaseHttpServlet extends HttpServlet {
     protected PrintWriter mPrintWriter;
     protected PrintWriter out;
     protected HashMap<String, String> mRequestHashMap;
-    private String mUserName;
-    private String mPassword;
+    private String mUserName = "";
+    private String mPassword = "";
     private AccountInfo mAccountInfo;
 
     /**
@@ -70,14 +70,14 @@ public class BaseHttpServlet extends HttpServlet {
             mUserName = mRequestHashMap.get(CommonParamString.PARAM_USERNAME);
             mPassword = mRequestHashMap.get(CommonParamString.PARAM_PASSWORD);
         }
-        
+
         mUserName = mRequestHashMap.get(CommonParamString.PARAM_USERNAME);
         mPassword = mRequestHashMap.get(CommonParamString.PARAM_PASSWORD);
 
         Iterator<Entry<String, String>> iterator = mRequestHashMap.entrySet()
                 .iterator();
         // out.println("Your request:"+request);
-        out.println("Your request:userName="+mUserName+",password="+mPassword);
+        out.println("Your request:userName=" + mUserName + ",password=" + mPassword);
         out.println("\nYour request:");
         while (iterator.hasNext()) {
             Entry<String, String> entry = iterator.next();
@@ -93,15 +93,17 @@ public class BaseHttpServlet extends HttpServlet {
         }
         // mUserName = "pjq";
         // mPassword = "123";
-        if (mPassword.contains("\n")) {
+        if (null != mPassword && mPassword.contains("\n")) {
             mPassword = mPassword.replace("\n", "");
         }
 
-        if (mUserName.contains("\n")) {
+        if (null != mUserName && mUserName.contains("\n")) {
             mUserName = mUserName.replace("\n", "");
         }
 
-        mAccountInfo = getAccountInfo(mUserName);
+        if (null != mUserName) {
+            mAccountInfo = getAccountInfo(mUserName);
+        }
     }
 
     @Override
