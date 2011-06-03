@@ -128,8 +128,10 @@ public class BaseHttpServlet extends HttpServlet {
             if (key.contains("password")) {
                 value="****";
             }
-            out.println(key + "=" + value);
+           out.println(key + "=" + value);
         }
+        
+        out.println("");
     }
 
     /**
