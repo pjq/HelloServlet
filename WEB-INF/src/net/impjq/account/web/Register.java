@@ -89,7 +89,7 @@ public class Register extends BaseHttpServlet {
 
         out.println("<P>");
         out.print("<form action=\"");
-        out.print("Register2\" ");
+        out.print("Register\" ");
         out.println("method=POST>");
         out.println("User Name:");
         out.println("<input type=text size=20 name=" + CommonParamString.PARAM_USERNAME + ">");
