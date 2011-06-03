@@ -339,6 +339,9 @@ public class BaseHttpServlet extends HttpServlet {
             String item = "[" + st.getUser().getName() + "]: " + dateString
                     + endle + st.getText();
             out.println(item);
+            if (isFromWeb()) {
+                out.println("<br>");
+            }
             out.println("------------------");
             if (isFromWeb()) {
                 out.println("<br>");
