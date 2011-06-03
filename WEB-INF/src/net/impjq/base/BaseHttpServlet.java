@@ -64,17 +64,20 @@ public class BaseHttpServlet extends HttpServlet {
         mMachine = mRequestHashMap.get(CommonParamString.PARAM_MACHINE);
 
         if (isFromWeb()) {
-            String username = req.getParameter("user_name");
-            String password = req.getParameter("user_password");
+            String username = req.getParameter(CommonParamString.PARAM_USERNAME);
+            String password = req.getParameter(CommonParamString.PARAM_PASSWORD);
         } else {
             mUserName = mRequestHashMap.get(CommonParamString.PARAM_USERNAME);
             mPassword = mRequestHashMap.get(CommonParamString.PARAM_PASSWORD);
         }
+        
+        mUserName = mRequestHashMap.get(CommonParamString.PARAM_USERNAME);
+        mPassword = mRequestHashMap.get(CommonParamString.PARAM_PASSWORD);
 
         Iterator<Entry<String, String>> iterator = mRequestHashMap.entrySet()
                 .iterator();
         // out.println("Your request:"+request);
-        // out.println("Your request:userName="+mUserName+",password="+mPassword);
+        out.println("Your request:userName="+mUserName+",password="+mPassword);
         out.println("\nYour request:");
         while (iterator.hasNext()) {
             Entry<String, String> entry = iterator.next();
