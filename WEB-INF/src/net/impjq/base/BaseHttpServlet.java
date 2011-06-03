@@ -57,21 +57,25 @@ public class BaseHttpServlet extends HttpServlet {
             throws ServletException, IOException {
         // TODO Auto-generated method stub
         resp.setContentType("text/html;charset=UTF-8");
+        // Init the common vars.
         out = resp.getWriter();
         mPrintWriter = out;
 
         String request = Utils.readFromInputStream(req.getInputStream());
-
         mRequestHashMap = parserPostParameters(request);
-
         mMachine = mRequestHashMap.get(CommonParamString.PARAM_MACHINE);
 
+        // Use the same parameters,so don't handle differently.
         if (isFromWeb()) {
-            String username = req.getParameter(CommonParamString.PARAM_USERNAME);
-            String password = req.getParameter(CommonParamString.PARAM_PASSWORD);
+            // String username =
+            // req.getParameter(CommonParamString.PARAM_USERNAME);
+            // String password =
+            // req.getParameter(CommonParamString.PARAM_PASSWORD);
         } else {
-            mUserName = mRequestHashMap.get(CommonParamString.PARAM_USERNAME);
-            mPassword = mRequestHashMap.get(CommonParamString.PARAM_PASSWORD);
+            // mUserName =
+            // mRequestHashMap.get(CommonParamString.PARAM_USERNAME);
+            // mPassword =
+            // mRequestHashMap.get(CommonParamString.PARAM_PASSWORD);
         }
 
         mUserName = removeEnter(mRequestHashMap.get(CommonParamString.PARAM_USERNAME));
@@ -81,20 +85,6 @@ public class BaseHttpServlet extends HttpServlet {
                 .get(CommonParamString.PARAM_TWITTER_USER_NAME));
         mTwitterUserPassword = removeEnter(mRequestHashMap
                 .get(CommonParamString.PARAM_TWITTER_USER_PASSWORD));
-
-        Iterator<Entry<String, String>> iterator = mRequestHashMap.entrySet()
-                .iterator();
-        // out.println("Your request:"+request);
-        out.println("Your request:userName=" + mUserName + ",password=" + mPassword);
-        out.println("\nYour request:");
-        while (iterator.hasNext()) {
-            Entry<String, String> entry = iterator.next();
-            String key = entry.getKey();
-            String value = entry.getValue();
-
-            out.println(key + "=" + value);
-        }
-
         if (isUserNameOrPasswordEmpty()) {
             // mUserName = "pjq";
             // mPassword = "123";
@@ -102,6 +92,32 @@ public class BaseHttpServlet extends HttpServlet {
 
         if (null != mUserName) {
             mAccountInfo = getAccountInfo(mUserName);
+        }
+    }
+
+    /**
+     * If the userName or password is null,you can set the default here.If it
+     * will used in the situation,such as {@link GetUserTimeline} which will not
+     * has the personal/private effect.
+     */
+    protected void setDefaultUserNamePassword() {
+        mUserName = "pjq";
+        mPassword = "123";
+    }
+
+    /**
+     * Print the request if need.
+     */
+    protected void printRequest() {
+        Iterator<Entry<String, String>> iterator = mRequestHashMap.entrySet()
+                .iterator();
+        out.println("\nYour request:");
+        while (iterator.hasNext()) {
+            Entry<String, String> entry = iterator.next();
+            String key = entry.getKey();
+            String value = entry.getValue();
+
+            out.println(key + "=" + value);
         }
     }
 

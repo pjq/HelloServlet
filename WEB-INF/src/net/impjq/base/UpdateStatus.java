@@ -1,6 +1,12 @@
 
 package net.impjq.base;
 
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 /**
  * Update Status interface
  * 
@@ -15,6 +21,14 @@ public abstract class UpdateStatus extends BaseHttpServlet {
     protected abstract void updateStatus(String userName, String password,
             String message);
 
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException,
+            IOException {
+        // TODO Auto-generated method stub
+        super.doGet(req, resp);
+        
+        printRequest();
+    }
 
 
  
