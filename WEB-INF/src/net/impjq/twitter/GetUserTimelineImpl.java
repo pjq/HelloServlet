@@ -47,7 +47,7 @@ public class GetUserTimelineImpl extends GetUserTimeline {
             if (isFromWeb()) {
                 out.println("<br>");
             }
-            out.println("=========GetHomeTimeline Response:========");
+            out.println("\n=========GetHomeTimeline Response:========\n");
             if (isFromWeb()) {
                 out.println("<br>");
             }
@@ -57,7 +57,7 @@ public class GetUserTimelineImpl extends GetUserTimeline {
             if (isFromWeb()) {
                 out.println("<br>");
             }
-            out.println("========GetUserTimeline Response:========");
+            out.println("\n========GetUserTimeline Response:========\n");
             if (isFromWeb()) {
                 out.println("<br>");
             }
