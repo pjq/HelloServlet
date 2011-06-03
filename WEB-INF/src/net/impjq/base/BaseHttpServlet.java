@@ -194,6 +194,7 @@ public class BaseHttpServlet extends HttpServlet {
      * @param password
      */
     public AccessToken getXAuthAccessToken(String userName, String password) {
+        out.println("getXAuthAccessToken,userName="+userName+",password="+password);
         ConfigurationBuilder cb = new ConfigurationBuilder();
         cb.setDebugEnabled(true).setOAuthConsumerKey(CONSUMER_KEY)
                 .setOAuthConsumerSecret(CONSUMER_SECRET);
