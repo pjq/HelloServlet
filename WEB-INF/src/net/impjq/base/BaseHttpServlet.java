@@ -340,6 +340,9 @@ public class BaseHttpServlet extends HttpServlet {
                     + endle + st.getText();
             out.println(item);
             out.println("------------------");
+            if (isFromWeb()) {
+                out.println("<br>");
+            }
         }
     }
 

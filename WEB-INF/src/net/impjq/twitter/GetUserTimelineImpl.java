@@ -44,11 +44,23 @@ public class GetUserTimelineImpl extends GetUserTimeline {
         ResponseList<Status> responseList = null;
         try {
             responseList = createTwitterInstance().getHomeTimeline();
+            if (isFromWeb()) {
+                out.println("<br>");
+            }
             out.println("=========GetHomeTimeline Response:========");
+            if (isFromWeb()) {
+                out.println("<br>");
+            }
             printResponseList(responseList);
 
             responseList = createTwitterInstance().getUserTimeline();
+            if (isFromWeb()) {
+                out.println("<br>");
+            }
             out.println("========GetUserTimeline Response:========");
+            if (isFromWeb()) {
+                out.println("<br>");
+            }
             printResponseList(responseList);
 
         } catch (TwitterException e) {
