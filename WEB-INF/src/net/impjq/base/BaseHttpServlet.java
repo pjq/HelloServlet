@@ -125,6 +125,9 @@ public class BaseHttpServlet extends HttpServlet {
             String key = entry.getKey();
             String value = entry.getValue();
 
+            if (key.contains("password")) {
+                value="****";
+            }
             out.println(key + "=" + value);
         }
     }
