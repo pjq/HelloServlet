@@ -33,16 +33,18 @@ public class Update extends BaseHttpServlet {
         // TODO Auto-generated method stub
         super.doGet(req, resp);
 
-        String username = req.getParameter(CommonParamString.PARAM_USERNAME);
-        String password = req.getParameter(CommonParamString.PARAM_PASSWORD);
+        // String username = req.getParameter(CommonParamString.PARAM_USERNAME);
+        // String password = req.getParameter(CommonParamString.PARAM_PASSWORD);
+        String userName = getUserName();
+        String password = getUserName();
         String twitterUserName = req.getParameter("user_twitter_user_name");
         String twitterPassword = req.getParameter("user_twitter_password");
         String email = req.getParameter("user_email");
 
-        if (null == username || null == password) {
+        if (isUserNameOrPasswordEmpty()) {
             sendUpdateHtml();
         } else {
-            AccountInfo accountInfo = getAccountInfo(username);
+            AccountInfo accountInfo = getAccountInfo();
 
             if (accountInfo.isPasswordMatched(password)) {// Right password
                 boolean isTwitterAccountAvailable = !Utils.isEmpty(twitterUserName)
@@ -70,7 +72,7 @@ public class Update extends BaseHttpServlet {
 
                 boolean result = false;
                 if (null != accessToken) {
-                    result = SqliteManager.getInstance().updateUser(username, password,
+                    result = SqliteManager.getInstance().updateUser(userName, password,
                             token,
                             tokenSecret, email, CONSUMER_KEY, CONSUMER_SECRET);
                     if (result) {
@@ -111,10 +113,10 @@ public class Update extends BaseHttpServlet {
         out.print("Update\" ");
         out.println("method=POST>");
         out.println("User Name:");
-        out.println("<input type=text size=20 name="+CommonParamString.PARAM_USERNAME+">");
+        out.println("<input type=text size=20 name=" + CommonParamString.PARAM_USERNAME + ">");
         // out.println("<br>");
         out.println("Password:");
-        out.println("<input type=text size=20 name="+CommonParamString.PARAM_PASSWORD+">");
+        out.println("<input type=text size=20 name=" + CommonParamString.PARAM_PASSWORD + ">");
         out.println("<br>");
         out.println("Your new Email:");
         out.println("<input type=text size=20 name=user_email>");
