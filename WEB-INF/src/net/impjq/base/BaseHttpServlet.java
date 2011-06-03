@@ -343,4 +343,17 @@ public class BaseHttpServlet extends HttpServlet {
             out.println("------------------");
         }
     }
+
+    protected void printHeader() {
+        out.println("<html>");
+        out.println("<head>");
+        out.println("<title>FTClient Web</title>");
+        out.println("</head>");
+        out.println("<body>");
+    }
+
+    protected void printFooter() {
+        out.println("</body>");
+        out.println("</html>");
+    }
 }
