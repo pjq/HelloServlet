@@ -70,7 +70,7 @@ public class BaseHttpServlet extends HttpServlet {
         mRequestHashMap = parserPostParameters(request);
         mMachine = mRequestHashMap.get(CommonParamString.PARAM_MACHINE);
 
-        // Use the same parameters,so don't handle differently.
+        // Use the same parameters,so don't need handle differently.
         if (isFromWeb()) {
             // String username =
             // req.getParameter(CommonParamString.PARAM_USERNAME);
