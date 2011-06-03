@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import net.impjq.base.BaseHttpServlet;
+import net.impjq.base.CommonParamString;
 import net.impjq.database.SqliteManager;
 import net.impjq.util.Utils;
 
@@ -35,8 +36,8 @@ public class Register extends BaseHttpServlet {
         // TODO Auto-generated method stub
         super.doGet(req, resp);
 
-        String username = req.getParameter("user_name");
-        String password = req.getParameter("user_password");
+        String username = req.getParameter(CommonParamString.PARAM_USERNAME);
+        String password = req.getParameter(CommonParamString.PARAM_PASSWORD);
         String twitterUserName = req.getParameter("user_twitter_user_name");
         String twitterPassword = req.getParameter("user_twitter_password");
         String email = req.getParameter("user_email");
@@ -91,10 +92,10 @@ public class Register extends BaseHttpServlet {
         out.print("Register2\" ");
         out.println("method=POST>");
         out.println("User Name:");
-        out.println("<input type=text size=20 name=user_name>");
+        out.println("<input type=text size=20 name=" + CommonParamString.PARAM_USERNAME + ">");
         // out.println("<br>");
         out.println("Password:");
-        out.println("<input type=text size=20 name=user_password>");
+        out.println("<input type=text size=20 name=" + CommonParamString.PARAM_PASSWORD + ">");
         // out.println("<br>");
         out.println("Email:");
         out.println("<input type=text size=20 name=user_email>");
