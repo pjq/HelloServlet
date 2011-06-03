@@ -29,6 +29,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * The base HttpServlet.
+ * 
+ * @author pjq0274
+ */
 public class BaseHttpServlet extends HttpServlet {
     public static final String CONSUMER_KEY = "Fa0VtxzeoxV7OuktLMrVLw";
     public static final String CONSUMER_SECRET = "6X8el11OSkrnpeeziXeBNJbf1BBDRmBgFB0LNn7dY";
@@ -39,7 +44,7 @@ public class BaseHttpServlet extends HttpServlet {
     private static final long serialVersionUID = -7088836496424042711L;
     protected PrintWriter mPrintWriter;
     protected PrintWriter out;
-    protected HashMap<String, String> mRequestHashMap;
+    private HashMap<String, String> mRequestHashMap;
     private String mUserName = "";
     private String mPassword = "";
     private String mEmail = "";
@@ -99,6 +104,9 @@ public class BaseHttpServlet extends HttpServlet {
      * If the userName or password is null,you can set the default here.If it
      * will used in the situation,such as {@link GetUserTimeline} which will not
      * has the personal/private effect.
+     * 
+     * @see #getDefaultAccountInfo()
+     * @see #userTheDefaultAccount()
      */
     protected void setDefaultUserNamePassword() {
         mUserName = "pjq";
@@ -245,6 +253,31 @@ public class BaseHttpServlet extends HttpServlet {
         AccountInfo accountInfo = SqliteManager.getInstance().queryAccountInfo(
                 userName);
         return accountInfo;
+    }
+
+    /**
+     * Use the default AccountInfo.
+     * 
+     * @see #setDefaultUserNamePassword()
+     * @see #getDefaultAccountInfo()
+     */
+    protected void userTheDefaultAccount() {
+        setDefaultUserNamePassword();
+        getDefaultAccountInfo();
+    }
+
+    /**
+     * Get the default account info after call
+     * {@link #setDefaultUserNamePassword()}.
+     * 
+     * @see #setDefaultUserNamePassword()
+     * @see #userTheDefaultAccount()
+     * @return
+     */
+    protected AccountInfo getDefaultAccountInfo() {
+        mAccountInfo = SqliteManager.getInstance().queryAccountInfo(
+                mUserName);
+        return mAccountInfo;
     }
 
     private String[] parser(String parameters) {

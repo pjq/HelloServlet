@@ -82,10 +82,10 @@ public class Register extends BaseHttpServlet {
     private void sendRegisterHtml() {
         out.println("<html>");
         out.println("<head>");
-        out.println("<title>Register(It will NOT REMEMBER your Twitter UserName and Password.)</title>");
+        out.println("<title>Register(It will NOT REMEMBER your Twitter UserName and Password)</title>");
         out.println("</head>");
         out.println("<body>");
-        out.println("<h3>Register</h3>");
+        out.println("<h3>Register(It will NOT REMEMBER your Twitter UserName and Password.)</h3>");
 
         out.println("<P>");
         out.print("<form action=\"");

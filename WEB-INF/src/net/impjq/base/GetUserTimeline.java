@@ -26,9 +26,9 @@ public abstract class GetUserTimeline extends BaseHttpServlet {
         // TODO Auto-generated method stub
         super.doGet(req, resp);
 
-        // Use the default user.
+        // Use the default user,and reInit the AccountInfo again.
         if (isUserNameOrPasswordEmpty()) {
-            setDefaultUserNamePassword();
+            userTheDefaultAccount();
         }
     }
 }
