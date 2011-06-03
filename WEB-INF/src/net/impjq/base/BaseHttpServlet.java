@@ -330,18 +330,26 @@ public class BaseHttpServlet extends HttpServlet {
      * 
      * @param responseList
      */
-    protected void printResponseList(ResponseList<Status> responseList) {
+    protected void printResponseList(ResponseList<Status> responseList, String endle) {
         for (Status st : responseList) {
-
             Date date = st.getCreatedAt();
             DateFormat dateFormat = DateFormat.getInstance();
             dateFormat.setTimeZone(TimeZone.getTimeZone("GMT+8:00"));
             String dateString = dateFormat.format(date);
             String item = "[" + st.getUser().getName() + "]: " + dateString
-                    + '\n' + st.getText();
+                    + endle + st.getText();
             out.println(item);
             out.println("------------------");
         }
+    }
+
+    protected void printResponseList(ResponseList<Status> responseList) {
+        if (isFromWeb()) {
+            printResponseList(responseList, "<br>");
+        } else {
+            printResponseList(responseList, "\n");
+        }
+
     }
 
     protected void printHeader() {
