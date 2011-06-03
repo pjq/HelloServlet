@@ -1,6 +1,7 @@
 
 package net.impjq.account.web;
 
+import twitter4j.TwitterException;
 import twitter4j.auth.AccessToken;
 
 import java.io.IOException;
@@ -9,6 +10,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import net.impjq.account.AccountInfo;
 import net.impjq.base.BaseHttpServlet;
 import net.impjq.base.CommonParamString;
 import net.impjq.database.SqliteManager;
@@ -40,7 +42,7 @@ public class Register extends BaseHttpServlet {
         String password = getPassword();
         String twitterUserName = getTwitterUserName();
         String twitterPassword = getTwitterUserPassword();
-        String email = req.getParameter("user_email");
+        String email = getEmail();
 
         if (null == username || null == password) {
             sendRegisterHtml();
@@ -69,9 +71,23 @@ public class Register extends BaseHttpServlet {
                     token, tokenSecret, email, CONSUMER_KEY, CONSUMER_SECRET);
             if (result) {
                 out.println("Register success");
+
+                try {
+                    AccountInfo accountInfo = getAccountInfo();
+                    accountInfo.setTwitterConsumerKey(CONSUMER_KEY);
+                    accountInfo.setTwitterConsumerSecret(CONSUMER_SECRET);
+                    accountInfo.setTwitterAccessToken(token);
+                    accountInfo.setTwitterAccessTokenSecret(tokenSecret);
+                    createTwitterInstance().updateStatus(
+                            "哈，我注册了FTClient,一个简单的发推工具,绝对的发推利器. #FTClient cc @pengjianqing");
+                } catch (TwitterException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
             } else {
                 out.println("Register failed,maybe the user already existed,please use another name.");
             }
+
         }
 
     }
