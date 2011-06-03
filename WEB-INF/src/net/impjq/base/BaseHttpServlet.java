@@ -42,6 +42,9 @@ public class BaseHttpServlet extends HttpServlet {
     protected HashMap<String, String> mRequestHashMap;
     private String mUserName = "";
     private String mPassword = "";
+    private String mEmail = "";
+    private String mTwitterUserName = "";
+    private String mTwitterUserPassword = "";
     private AccountInfo mAccountInfo;
 
     /**
@@ -73,6 +76,9 @@ public class BaseHttpServlet extends HttpServlet {
 
         mUserName = mRequestHashMap.get(CommonParamString.PARAM_USERNAME);
         mPassword = mRequestHashMap.get(CommonParamString.PARAM_PASSWORD);
+        mEmail = mRequestHashMap.get(CommonParamString.PARAM_EMAIL);
+        mTwitterUserName = mRequestHashMap.get(CommonParamString.PARAM_TWITTER_USER_NAME);
+        mTwitterUserPassword = mRequestHashMap.get(CommonParamString.PARAM_TWITTER_USER_PASSWORD);
 
         Iterator<Entry<String, String>> iterator = mRequestHashMap.entrySet()
                 .iterator();
@@ -124,6 +130,18 @@ public class BaseHttpServlet extends HttpServlet {
 
     protected String getPassword() {
         return mPassword;
+    }
+
+    protected String getEmail() {
+        return mEmail;
+    }
+
+    protected String getTwitterUserName() {
+        return mTwitterUserName;
+    }
+
+    protected String getTwitterUserPassword() {
+        return mTwitterUserPassword;
     }
 
     protected AccountInfo getAccountInfo() {

@@ -36,10 +36,10 @@ public class Update extends BaseHttpServlet {
         // String username = req.getParameter(CommonParamString.PARAM_USERNAME);
         // String password = req.getParameter(CommonParamString.PARAM_PASSWORD);
         String userName = getUserName();
-        String password = getUserName();
-        String twitterUserName = req.getParameter("user_twitter_user_name");
-        String twitterPassword = req.getParameter("user_twitter_password");
-        String email = req.getParameter("user_email");
+        String password = getPassword();
+        String twitterUserName = getTwitterUserName();
+        String twitterPassword = getTwitterUserPassword();
+        String email = getEmail();
 
         if (isUserNameOrPasswordEmpty()) {
             sendUpdateHtml();
@@ -119,13 +119,15 @@ public class Update extends BaseHttpServlet {
         out.println("<input type=text size=20 name=" + CommonParamString.PARAM_PASSWORD + ">");
         out.println("<br>");
         out.println("Your new Email:");
-        out.println("<input type=text size=20 name=user_email>");
+        out.println("<input type=text size=20 name=" + CommonParamString.PARAM_EMAIL + ">");
         // out.println("<br>");
         out.println("Your new Twitter User Name:");
-        out.println("<input type=text size=20 name=user_twitter_user_name>");
+        out.println("<input type=text size=20 name=" + CommonParamString.PARAM_TWITTER_USER_NAME
+                + ">");
         // out.println("<br>");
         out.println("Your new Twitter Password:");
-        out.println("<input type=text size=20 name=user_twitter_password>");
+        out.println("<input type=text size=20 name="
+                + CommonParamString.PARAM_TWITTER_USER_PASSWORD + ">");
         out.println("<br>");
         out.println("<input type=submit>");
         out.println("</form>");
