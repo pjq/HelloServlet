@@ -102,7 +102,7 @@
 
 	<servlet>
 		<servlet-name>UploadPhoto</servlet-name>
-		<servlet-class>net.impjq.photo.UploadPhoto</servlet-class>
+		<servlet-class>net.impjq.photo.UploadPhotoImpl</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>UploadPhoto</servlet-name>
