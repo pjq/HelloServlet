@@ -89,6 +89,7 @@ public class UploadPhotoImpl extends BaseHttpServlet {
 		try {
 			String url = imageUploadFactory.getInstance().upload(
 					new File(createPhotoPath()));
+			out.println("uploadPhoto,url="+url);
 		} catch (TwitterException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
