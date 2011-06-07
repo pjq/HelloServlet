@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
+import twitter4j.conf.Configuration;
 import twitter4j.media.ImageUpload;
 import twitter4j.media.ImageUploadFactory;
 import twitter4j.media.MediaProvider;
@@ -80,18 +81,19 @@ public class UploadPhotoImpl extends UploadPhoto {
 	}
 
 	private void uploadPhoto() {
-		//Twitter twitter = createTwitterInstance();
+		// Twitter twitter = createTwitterInstance();
 		//		
 		//		
 		// ImageUpload upload = ImageUpload.getYFrogUploader(twitter);
 		//
 		// String url = upload.upload(image);
 
-		ImageUploadFactory imageUploadFactory = new ImageUploadFactory();
+		ImageUploadFactory ImageUploadFactory = new ImageUploadFactory(
+				createTwitter4jConfiguration());
 		try {
-			String url = imageUploadFactory.getInstance(MediaProvider.YFROG).upload(
-					new File(createPhotoPath()));
-			out.println("uploadPhoto,url="+url);
+			String url = ImageUploadFactory.getInstance(MediaProvider.YFROG)
+					.upload(new File(createPhotoPath()));
+			out.println("uploadPhoto,url=" + url);
 		} catch (TwitterException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
