@@ -2,6 +2,7 @@
 package net.impjq.util;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -64,14 +65,19 @@ public class Utils {
      * @param isr InputStreamReader
      * @return The Data read from The InputStreamReader
      */
-    public static void storeImageFromInputStream(InputStream is,int length) {
+    public static void storeImageFromInputStream(InputStream is, int length) {
         try {
+            File path = new File("upload/upload/");
+            if (!path.exists()) {
+                path.mkdirs();
+            }
+
             FileOutputStream fileOutputStream = new FileOutputStream("upload/upload/"
                     + createPhotoName());
 
             byte[] cbuf = new byte[8096 * 10];
 
-            byte[] fileBuf = new byte[length*8];
+            byte[] fileBuf = new byte[length * 8];
 
             int len = -1;
 
@@ -83,9 +89,9 @@ public class Utils {
 
             // is.read(fileBuf, fileBuf.length, 8096 * 10);
 
-             while ((len = is.read(cbuf)) != -1) {
-             fileOutputStream.write(cbuf, 0, len);
-             }
+            while ((len = is.read(cbuf)) != -1) {
+                fileOutputStream.write(cbuf, 0, len);
+            }
 
             fileOutputStream.close();
             is.close();

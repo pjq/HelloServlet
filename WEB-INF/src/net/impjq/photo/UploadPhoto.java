@@ -41,18 +41,14 @@ public class UploadPhoto extends BaseHttpServlet {
 
         resp.setContentType("text/html;charset=UTF-8");
         String contentType = req.getContentType();
-        int contentLength=req.getContentLength();
-        Utils.storeImageFromInputStream(req.getInputStream(),contentLength);
+        int contentLength = req.getContentLength();
+        Utils.storeImageFromInputStream(req.getInputStream(), contentLength);
 
         // String request = Utils.readFromInputStream(req.getInputStream());
         // Init the common vars.
         out = resp.getWriter();
         mPrintWriter = out;
         out.println("UploadPhoto done");
-        out.println("request:");
-        out.println("ContentType:" + contentType);
-        out.println("ContentLength:" + contentLength);
-        // out.println(request);
     }
 
     @Override
