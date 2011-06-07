@@ -100,4 +100,13 @@
 		<url-pattern>/account/web/Update</url-pattern>
 	</servlet-mapping>
 
+	<servlet>
+		<servlet-name>UploadPhoto</servlet-name>
+		<servlet-class>net.impjq.photo.UploadPhoto</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UploadPhoto</servlet-name>
+		<url-pattern>/s3/UploadPhoto</url-pattern>
+	</servlet-mapping>
+
 </web-app>
