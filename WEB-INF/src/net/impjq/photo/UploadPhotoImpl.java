@@ -57,9 +57,10 @@ public class UploadPhotoImpl extends UploadPhoto {
 		Utils.storeImageFromInputStream(req.getInputStream(), contentLength,
 				mUploadPath, mPhotoName);
 
-		out.println("UploadPhoto done");
+		// out.println("UploadPhoto done");
 		userTheDefaultAccount();
-		uploadPhoto();
+		String url = uploadPhoto();
+		out.println(url);
 	}
 
 	@Override
@@ -80,7 +81,12 @@ public class UploadPhotoImpl extends UploadPhoto {
 		}
 	}
 
-	private void uploadPhoto() {
+	/**
+	 * Upload the Url with the default YFrog.
+	 * 
+	 * @return the url of the uploaded image.
+	 */
+	private String uploadPhoto() {
 		// Twitter twitter = createTwitterInstance();
 		//		
 		//		
@@ -90,14 +96,16 @@ public class UploadPhotoImpl extends UploadPhoto {
 
 		ImageUploadFactory ImageUploadFactory = new ImageUploadFactory(
 				createTwitter4jConfiguration());
+		String url = "";
 		try {
-			String url = ImageUploadFactory.getInstance(MediaProvider.YFROG)
-					.upload(new File(createPhotoPath()));
-			out.println("uploadPhoto,url=" + url);
+			url = ImageUploadFactory.getInstance(MediaProvider.YFROG).upload(
+					new File(createPhotoPath()));
+
 		} catch (TwitterException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return url;
 	}
 
 	private String createPhotoPath() {
