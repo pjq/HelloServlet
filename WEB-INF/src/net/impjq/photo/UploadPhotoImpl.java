@@ -13,9 +13,10 @@ import twitter4j.media.ImageUpload;
 import twitter4j.media.ImageUploadFactory;
 
 import net.impjq.base.BaseHttpServlet;
+import net.impjq.base.UploadPhoto;
 import net.impjq.util.Utils;
 
-public class UploadPhotoImpl extends BaseHttpServlet {
+public class UploadPhotoImpl extends UploadPhoto {
 	public static final String mUploadPath = "./upload/upload/";
 	public static final String mUploadTmpPath = "./upload/tmp/";
 
