@@ -57,11 +57,7 @@ public class UploadPhotoImpl extends UploadPhoto {
         int contentLength = req.getContentLength();
         mPhotoName = Utils.createPhotoName();
         Utils.storeImageFromInputStream(req.getInputStream(), contentLength,
-                mUploadPath, mPhotoName);
-        String authString =
-                req.getHeader(CommonParamString.PARAM_HEADER_USERNAME_PASSWORD);
-        parseAuthString(authString);
-        getAccountInfo(getUserName());
+                mUploadPath, mPhotoName);     
 
         // out.println("UploadPhoto done");
         // userTheDefaultAccount();
