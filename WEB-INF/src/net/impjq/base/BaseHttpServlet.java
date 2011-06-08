@@ -311,6 +311,7 @@ public class BaseHttpServlet extends HttpServlet {
     protected AccountInfo getAccountInfo(String userName) {
         AccountInfo accountInfo = SqliteManager.getInstance().queryAccountInfo(
                 userName);
+        mAccountInfo=accountInfo;
         return accountInfo;
     }
 
