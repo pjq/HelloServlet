@@ -26,6 +26,7 @@ public class UploadPhoto extends BaseHttpServlet {
 
         String authString =
                 req.getHeader(CommonParamString.PARAM_HEADER_USERNAME_PASSWORD);
+        //Get the UserName and Password
         parseAuthString(authString);
         getAccountInfo(getUserName());
     }

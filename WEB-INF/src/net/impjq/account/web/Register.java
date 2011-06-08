@@ -44,7 +44,7 @@ public class Register extends BaseHttpServlet {
         String twitterPassword = getTwitterUserPassword();
         String email = getEmail();
 
-        if (null == username || null == password) {
+        if (Utils.isEmpty(username) || Utils.isEmpty(password)) {
             sendRegisterHtml();
         } else {
             boolean isTwitterAccountAvailable = !Utils.isEmpty(twitterUserName)

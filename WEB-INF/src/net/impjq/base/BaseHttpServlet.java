@@ -73,20 +73,21 @@ public class BaseHttpServlet extends HttpServlet {
 
         // Because the UserName and Password are passed in the Http Header,so
         // need parse differently.
-        String authString = req.getHeader(CommonParamString.PARAM_HEADER_USERNAME_PASSWORD);
-        parseAuthString(authString);
 
         // Use the same parameters,so don't need handle differently.
         if (isFromWeb()) {
-            // String username =
-            // req.getParameter(CommonParamString.PARAM_USERNAME);
-            // String password =
-            // req.getParameter(CommonParamString.PARAM_PASSWORD);
-        } else {
             // mUserName =
-            // mRequestHashMap.get(CommonParamString.PARAM_USERNAME);
+            // req.getParameter(CommonParamString.PARAM_USERNAME);
             // mPassword =
-            // mRequestHashMap.get(CommonParamString.PARAM_PASSWORD);
+            // req.getParameter(CommonParamString.PARAM_PASSWORD);
+            mUserName =
+                    mRequestHashMap.get(CommonParamString.PARAM_USERNAME);
+            mPassword =
+                    mRequestHashMap.get(CommonParamString.PARAM_PASSWORD);
+        } else {
+
+            String authString = req.getHeader(CommonParamString.PARAM_HEADER_USERNAME_PASSWORD);
+            parseAuthString(authString);
         }
 
         // mUserName = removeEnter(mRequestHashMap
@@ -109,6 +110,7 @@ public class BaseHttpServlet extends HttpServlet {
     }
 
     /**
+     * Parser the UserName and Password.<br>
      * username=user&password=123
      * 
      * @param authString
@@ -131,9 +133,7 @@ public class BaseHttpServlet extends HttpServlet {
                     mPassword = pair[1];
                 }
             }
-
         }
-
     }
 
     /**
