@@ -1,3 +1,4 @@
+
 package net.impjq.photo;
 
 import java.io.File;
@@ -15,101 +16,106 @@ import twitter4j.media.ImageUploadFactory;
 import twitter4j.media.MediaProvider;
 
 import net.impjq.base.BaseHttpServlet;
+import net.impjq.base.CommonParamString;
 import net.impjq.base.UploadPhoto;
 import net.impjq.util.Utils;
 
 public class UploadPhotoImpl extends UploadPhoto {
-	public static final String mUploadPath = "./upload/upload/";
-	public static final String mUploadTmpPath = "./upload/tmp/";
+    public static final String mUploadPath = "./upload/upload/";
+    public static final String mUploadTmpPath = "./upload/tmp/";
 
-	private String mPhotoName;
+    private String mPhotoName;
 
-	/**
+    /**
      * 
      */
-	private static final long serialVersionUID = -7769869574976977418L;
+    private static final long serialVersionUID = -7769869574976977418L;
 
-	// private String uploadPath = "./upload/upload/";
-	// private String tempPath = "./upload/tmp";
-	File tempPathFile;
+    // private String uploadPath = "./upload/upload/";
+    // private String tempPath = "./upload/tmp";
+    File tempPathFile;
 
-	public void init() throws ServletException {
-		File uploadFile = new File(mUploadPath);
-		if (!uploadFile.exists()) {
-			uploadFile.mkdirs();
-		}
-		File tempPathFile = new File(mUploadTmpPath);
-		if (!tempPathFile.exists()) {
-			tempPathFile.mkdirs();
-		}
-	}
+    public void init() throws ServletException {
+        File uploadFile = new File(mUploadPath);
+        if (!uploadFile.exists()) {
+            uploadFile.mkdirs();
+        }
+        File tempPathFile = new File(mUploadTmpPath);
+        if (!tempPathFile.exists()) {
+            tempPathFile.mkdirs();
+        }
+    }
 
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		super.doPost(req, resp);
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
+        // TODO Auto-generated method stub
+        super.doPost(req, resp);
 
-		init();
-		// String contentType = req.getContentType();
-		int contentLength = req.getContentLength();
-		mPhotoName = Utils.createPhotoName();
-		Utils.storeImageFromInputStream(req.getInputStream(), contentLength,
-				mUploadPath, mPhotoName);
+        init();
+        // String contentType = req.getContentType();
+        int contentLength = req.getContentLength();
+        mPhotoName = Utils.createPhotoName();
+        Utils.storeImageFromInputStream(req.getInputStream(), contentLength,
+                mUploadPath, mPhotoName);
+        String authString =
+                req.getHeader(CommonParamString.PARAM_HEADER_USERNAME_PASSWORD);
+        parseAuthString(authString);
+        getAccountInfo(getUserName());
 
-		// out.println("UploadPhoto done");
-		userTheDefaultAccount();
-		String url = uploadPhoto();
-		out.println(url);
-	}
+        // out.println("UploadPhoto done");
+        // userTheDefaultAccount();
+        String url = uploadPhoto();
+        out.println(url);
+    }
 
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		super.doGet(req, resp);
-	}
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
+        // TODO Auto-generated method stub
+        super.doGet(req, resp);
+    }
 
-	/**
-	 * Delete the photo when upload success.
-	 */
-	private void deletePhoto() {
-		File file = new File(mUploadPath, mPhotoName);
+    /**
+     * Delete the photo when upload success.
+     */
+    private void deletePhoto() {
+        File file = new File(mUploadPath, mPhotoName);
 
-		if (file.exists()) {
-			file.delete();
-		}
-	}
+        if (file.exists()) {
+            file.delete();
+        }
+    }
 
-	/**
-	 * Upload the Url with the default YFrog.
-	 * 
-	 * @return the url of the uploaded image.
-	 */
-	private String uploadPhoto() {
-		// Twitter twitter = createTwitterInstance();
-		//		
-		//		
-		// ImageUpload upload = ImageUpload.getYFrogUploader(twitter);
-		//
-		// String url = upload.upload(image);
+    /**
+     * Upload the Url with the default YFrog.
+     * 
+     * @return the url of the uploaded image.
+     */
+    private String uploadPhoto() {
+        // Twitter twitter = createTwitterInstance();
+        //
+        //
+        // ImageUpload upload = ImageUpload.getYFrogUploader(twitter);
+        //
+        // String url = upload.upload(image);
 
-		ImageUploadFactory ImageUploadFactory = new ImageUploadFactory(
-				createTwitter4jConfiguration());
-		String url = "";
-		try {
-			url = ImageUploadFactory.getInstance(MediaProvider.YFROG).upload(
-					new File(createPhotoPath()));
+        ImageUploadFactory ImageUploadFactory = new ImageUploadFactory(
+                createTwitter4jConfiguration());
+        String url = "";
+        try {
+            url = ImageUploadFactory.getInstance(MediaProvider.YFROG).upload(
+                    new File(createPhotoPath()));
 
-		} catch (TwitterException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return url;
-	}
+        } catch (TwitterException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return url;
+    }
 
-	private String createPhotoPath() {
-		return mUploadPath + "/" + mPhotoName;
-	}
+    private String createPhotoPath() {
+        return mUploadPath + "/" + mPhotoName;
+    }
 
 }

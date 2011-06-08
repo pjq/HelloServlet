@@ -22,9 +22,7 @@ public class UploadPhoto extends BaseHttpServlet {
         // Init the common vars.
         resp.setContentType("text/html;charset=UTF-8");
         out = resp.getWriter();
-        mPrintWriter = out;
-        String authString = req.getHeader(CommonParamString.PARAM_HEADER_USERNAME_PASSWORD);
-        parseAuthString(authString);
+        mPrintWriter = out;  
     }
 
 }
