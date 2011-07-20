@@ -39,7 +39,7 @@ public class GetIP extends HttpServlet {
 		InetAddress[] addresses = InetAddress.getAllByName(domain);
 		int length = addresses.length;
 		for (int i = 0; i < length; i++) {
-			out.println(addresses[i].getHostAddress());
+			//out.println(addresses[i].getHostAddress());
 		}
 	}
 
