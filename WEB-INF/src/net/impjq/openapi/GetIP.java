@@ -12,9 +12,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import net.impjq.base.BaseHttpServlet;
 import net.impjq.util.Utils;
 
-public class GetIP extends HttpServlet {
+public class GetIP extends BaseHttpServlet {
 	protected PrintWriter mPrintWriter;
 	protected PrintWriter out;
 	private HashMap<String, String> mRequestHashMap;
