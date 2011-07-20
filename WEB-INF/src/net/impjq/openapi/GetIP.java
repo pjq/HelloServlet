@@ -34,7 +34,7 @@ public class GetIP extends BaseHttpServlet {
 		//String request = Utils.readFromInputStream(req.getInputStream());
 		//mRequestHashMap = parserPostParameters(request);
 
-		String domain = mRequestHashMap.get("domain");
+		String domain = req.getParameter( "param1 "); 
 
 		//out.println("Resolve domain:"+domain);
 		InetAddress[] addresses = InetAddress.getAllByName(domain);
