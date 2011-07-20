@@ -15,10 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import net.impjq.base.BaseHttpServlet;
 import net.impjq.util.Utils;
 
-public class GetIP extends BaseHttpServlet {
-	protected PrintWriter mPrintWriter;
-	protected PrintWriter out;
-	private HashMap<String, String> mRequestHashMap;
+public class GetIP extends BaseHttpServlet {	
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -34,13 +31,13 @@ public class GetIP extends BaseHttpServlet {
 		//String request = Utils.readFromInputStream(req.getInputStream());
 		//mRequestHashMap = parserPostParameters(request);
 
-		String domain = req.getParameter( "param1 "); 
+		String domain = req.getParameter( "domain"); 
 
-		//out.println("Resolve domain:"+domain);
+		mPrintWriter.println("#Resolve domain:"+domain);
 		InetAddress[] addresses = InetAddress.getAllByName(domain);
 		int length = addresses.length;
 		for (int i = 0; i < length; i++) {
-			//out.println(addresses[i].getHostAddress());
+			out.println(domain+"    "+addresses[i].getHostAddress());
 		}
 	}
 
