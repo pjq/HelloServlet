@@ -30,17 +30,17 @@ public class GetIP extends HttpServlet {
 		out = resp.getWriter();
 		mPrintWriter = out;
 
-		String request = Utils.readFromInputStream(req.getInputStream());
-		mRequestHashMap = parserPostParameters(request);
-
-		String domain = mRequestHashMap.get("domain");
+//		String request = Utils.readFromInputStream(req.getInputStream());
+//		mRequestHashMap = parserPostParameters(request);
+//
+//		String domain = mRequestHashMap.get("domain");
 
 		//out.println("Resolve domain:"+domain);
-		InetAddress[] addresses = InetAddress.getAllByName(domain);
-		int length = addresses.length;
-		for (int i = 0; i < length; i++) {
-			//out.println(addresses[i].getHostAddress());
-		}
+//		InetAddress[] addresses = InetAddress.getAllByName(domain);
+//		int length = addresses.length;
+//		for (int i = 0; i < length; i++) {
+//			//out.println(addresses[i].getHostAddress());
+//		}
 	}
 
 	@Override
