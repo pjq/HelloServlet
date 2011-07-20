@@ -35,7 +35,7 @@ public class GetIP extends HttpServlet {
 
 		String domain = mRequestHashMap.get("domain");
 
-		out.println("Resolve domain:"+domain);
+		//out.println("Resolve domain:"+domain);
 		InetAddress[] addresses = InetAddress.getAllByName(domain);
 		int length = addresses.length;
 		for (int i = 0; i < length; i++) {
