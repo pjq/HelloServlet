@@ -77,9 +77,13 @@
 	</servlet-mapping>
 
 
-	<!-- servlet> <servlet-name>OldWebRegister</servlet-name> <servlet-class>net.impjq.account.web.OldRegister</servlet-class> 
-		</servlet> <servlet-mapping> <servlet-name>OldWebRegister</servlet-name> 
-		<url-pattern>/account/web/OldRegister</url-pattern> </servlet-mapping -->
+	<!--
+		servlet> <servlet-name>OldWebRegister</servlet-name>
+		<servlet-class>net.impjq.account.web.OldRegister</servlet-class>
+		</servlet> <servlet-mapping>
+		<servlet-name>OldWebRegister</servlet-name>
+		<url-pattern>/account/web/OldRegister</url-pattern> </servlet-mapping
+	-->
 
 
 	<servlet>
@@ -107,6 +111,16 @@
 	<servlet-mapping>
 		<servlet-name>UploadPhoto</servlet-name>
 		<url-pattern>/s3/UploadPhoto</url-pattern>
+	</servlet-mapping>
+
+
+	<servlet>
+		<servlet-name>GetIp</servlet-name>
+		<servlet-class>net.impjq.openapi.GetIP</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>GetIp</servlet-name>
+		<url-pattern>/openapi/getip</url-pattern>
 	</servlet-mapping>
 
 </web-app>
