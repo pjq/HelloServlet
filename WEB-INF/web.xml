@@ -129,7 +129,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>AlipayResponse</servlet-name>
-		<url-pattern>/openapi/AlipayResponse</url-pattern>
+		<url-pattern>/openapi/alipay</url-pattern>
 	</servlet-mapping>
 
 </web-app>
