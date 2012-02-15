@@ -131,5 +131,15 @@
 		<servlet-name>AlipayResponse</servlet-name>
 		<url-pattern>/openapi/alipay</url-pattern>
 	</servlet-mapping>
+	
+	
+	<servlet>
+		<servlet-name>AlipayLog</servlet-name>
+		<servlet-class>net.impjq.openapi.AlipayLog</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AlipayLog</servlet-name>
+		<url-pattern>/openapi/alipaylog</url-pattern>
+	</servlet-mapping>
 
 </web-app>

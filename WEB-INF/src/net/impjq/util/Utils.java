@@ -6,6 +6,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
@@ -150,7 +151,26 @@ public class Utils {
 				if(buf != null) buf.close();
 			}catch(IOException e){
 			}
-		}
+		}	
+	}
 	
+	public static String readFileToString(String fullName){
+		StringBuffer sbuffer = new StringBuffer();
+		BufferedReader bufferedReader = null;
+		try{
+			bufferedReader = new BufferedReader(new FileReader(fullName));
+			String line = null;
+			while((line = bufferedReader.readLine()) != null){
+				sbuffer.append(line + "\n");
+			}
+		}catch(Exception e){	
+		}finally{
+			try{
+				if(bufferedReader != null)
+					bufferedReader.close();
+			}catch(IOException ex){
+			}
+		}
+		return sbuffer.toString();
 	}
 }
