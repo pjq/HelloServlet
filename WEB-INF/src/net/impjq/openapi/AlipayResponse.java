@@ -3,6 +3,7 @@ package net.impjq.openapi;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
+import java.util.Enumeration;
 import java.util.HashMap;
 
 import javax.servlet.ServletException;
@@ -37,7 +38,13 @@ public class AlipayResponse extends BaseHttpServlet {
 		
 		String info=req.getRemoteAddr();
 		info+=req.getRemoteHost()+":"+req.getRemotePort();
-		info+=req.getHeaderNames();
+		Enumeration<String> emuEnumeration=req.getHeaderNames();
+		
+		while (emuEnumeration.hasMoreElements()) {
+			String string = (String) emuEnumeration.nextElement();
+						
+		}
+		
 		Utils.writeFile(LOG_FILE, info);
 		Utils.writeFile(LOG_FILE, mOriginRequestString);
 
