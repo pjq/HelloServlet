@@ -36,7 +36,7 @@ public class AlipayResponse extends BaseHttpServlet {
 
 		String domain = req.getParameter( "domain"); 
 		
-		String info=req.getRemoteAddr();
+		String info="";//req.getRemoteAddr();
 		info+=req.getRemoteHost()+":"+req.getRemotePort();
 		Enumeration<String> emuEnumeration=req.getHeaderNames();
 		
