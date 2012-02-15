@@ -122,5 +122,14 @@
 		<servlet-name>GetIp</servlet-name>
 		<url-pattern>/openapi/getip</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>AlipayResponse</servlet-name>
+		<servlet-class>net.impjq.openapi.AlipayResponse</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AlipayResponse</servlet-name>
+		<url-pattern>/openapi/AlipayResponse</url-pattern>
+	</servlet-mapping>
 
 </web-app>
