@@ -2,9 +2,11 @@
 package net.impjq.util;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -128,4 +130,27 @@ public class Utils {
 
         return empty;
     }
+    
+    /**
+     * Write file,used to write the log.
+     * @param fileName
+     * @param data
+     */
+	public static void writeFile(String fileName, String data) {
+		BufferedWriter buf = null;
+		try {
+			buf = new BufferedWriter(new FileWriter(fileName, true));
+			buf.write(data, 0, data.length());
+			buf.newLine();
+		} catch (OutOfMemoryError oom) {
+			
+		} catch (Exception e) {
+		}finally{
+			try{
+				if(buf != null) buf.close();
+			}catch(IOException e){
+			}
+		}
+	
+	}
 }

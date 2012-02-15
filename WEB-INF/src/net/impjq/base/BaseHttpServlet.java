@@ -52,6 +52,10 @@ public class BaseHttpServlet extends HttpServlet {
     private String mTwitterUserName = "";
     private String mTwitterUserPassword = "";
     private AccountInfo mAccountInfo;
+    /**
+     * Store the origin request string read from the input stream.
+     */
+    protected String mOriginRequestString;
 
     /**
      * The client identify,it is null,it is from web.
@@ -68,6 +72,7 @@ public class BaseHttpServlet extends HttpServlet {
         mPrintWriter = out;
 
         String request = Utils.readFromInputStream(req.getInputStream());
+        mOriginRequestString=request;
         mRequestHashMap = parserPostParameters(request);
         mMachine = mRequestHashMap.get(CommonParamString.PARAM_MACHINE);
 

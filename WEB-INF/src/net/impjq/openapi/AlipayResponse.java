@@ -1,21 +1,23 @@
 package net.impjq.openapi;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
-import java.net.InetAddress;
 import java.net.URLDecoder;
 import java.util.HashMap;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import net.impjq.base.BaseHttpServlet;
 import net.impjq.util.Utils;
 
-public class AlipayResponse extends BaseHttpServlet {	
+public class AlipayResponse extends BaseHttpServlet {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1272248154929016461L;
+	private static final String LOG_FILE="alipay.log";
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -32,6 +34,8 @@ public class AlipayResponse extends BaseHttpServlet {
 		//mRequestHashMap = parserPostParameters(request);
 
 		String domain = req.getParameter( "domain"); 
+		
+		Utils.writeFile(LOG_FILE, mOriginRequestString);
 
 
 		out.println("Handle the Alipay CallBack.");
