@@ -35,6 +35,10 @@ public class AlipayResponse extends BaseHttpServlet {
 
 		String domain = req.getParameter( "domain"); 
 		
+		String info=req.getRemoteAddr();
+		info+=req.getRemoteHost()+":"+req.getRemotePort();
+		info+=req.getHeaderNames();
+		Utils.writeFile(LOG_FILE, info);
 		Utils.writeFile(LOG_FILE, mOriginRequestString);
 
 
