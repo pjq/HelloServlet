@@ -42,7 +42,7 @@ public class HomePage extends BaseHttpServlet {
         out.println("<a href=\"https://216.24.194.197:8443/HelloServlet/s1/GetUserTimeline\">GetTimeline</a>");
         out.println("<br>");
         out.println("<br>");
-        out.println("<a href=\"http://wiki.impjq.net/doku.php?id=project:ftclient\">Click here for detail.</a>");
+        out.println("<a href=\"http://pjq.me/wiki/doku.php?id=project:ftclient\">Click here for detail.</a>");
         out.println("<br>");
         out.println("<a href=\"mailto:pengjianqing\">Contact me</a>");
         out.println("<br>");
