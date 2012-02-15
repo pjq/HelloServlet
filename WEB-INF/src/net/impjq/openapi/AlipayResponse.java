@@ -33,12 +33,16 @@ public class AlipayResponse extends BaseHttpServlet {
 
 		String domain = req.getParameter( "domain"); 
 
-		mPrintWriter.println("#Resolve domain:"+domain);
-		InetAddress[] addresses = InetAddress.getAllByName(domain);
-		int length = addresses.length;
-		for (int i = 0; i < length; i++) {
-			out.println(domain+"    "+addresses[i].getHostAddress());
-		}
+
+		out.println("Handle the Alipay CallBack.");
+		out.println("Used to check the RSA certification.");
+
+		// mPrintWriter.println("#Resolve domain:"+domain);
+		// InetAddress[] addresses = InetAddress.getAllByName(domain);
+		// int length = addresses.length;
+		// for (int i = 0; i < length; i++) {
+		// out.println(domain+"    "+addresses[i].getHostAddress());
+		// }
 	}
 
 	@Override
